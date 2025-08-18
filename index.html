@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Руководства по LangChain</title>
+  <meta name="description" content="Практические руководства по LangChain: от новичка до профи и создание чат-ботов и веб-приложений." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #1e293b;
+      --ink-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-2: #10b981;
+      --warn: #f59e0b;
+      --err: #ef4444;
+      --code-bg: #f1f5f9;
+      --border: #e2e8f0;
+      --header-bg: #f1f5f9;
+    }
+    
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    h1, h2, h3, h4 {
+      color: var(--ink);
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 12px;
+      letter-spacing: 0.3px;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 15px;
+    }
+    
+    .subtitle {
+      color: var(--ink-dim);
+      text-align: center;
+      margin-bottom: 26px;
+      font-size: 1.1rem;
+    }
+    
+    .kicker {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+    
+    .grid.cols-2 {
+      grid-template-columns: 1fr;
+    }
+    
+    @media (min-width: 900px) {
+      .grid.cols-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+    }
+    
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    code {
+      background: var(--code-bg);
+      color: var(--ink);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+    
+    pre {
+      background: var(--code-bg);
+      color: var(--ink);
+      padding: 14px 16px;
+      border-radius: 12px;
+      overflow: auto;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+    
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .toc {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    
+    .toc ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--ink-dim);
+    }
+    
+    .tip {
+      border-left: 4px solid var(--accent-2);
+      background: #f0fdf4;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+    
+    .warn {
+      border-left: 4px solid var(--warn);
+      background: #fffbeb;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+    
+    .danger {
+      border-left: 4px solid var(--err);
+      background: #fef2f2;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+    
+    .muted {
+      color: var(--ink-dim);
+    }
+    
+    .footer {
+      margin: 50px 0 30px;
+      text-align: center;
+      color: var(--ink-dim);
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    
+    .pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--ink-dim);
+    }
+    
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      border: 1px solid #94a3b8;
+      background: var(--header-bg);
+      border-bottom-width: 3px;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+    
+    .mermaid {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+    
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+    
+    th {
+      background: var(--header-bg);
+      font-weight: 600;
+    }
+    
+    .roadmap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0 0;
+    }
+    
+    .roadmap .step {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+    
+    ul, ol {
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    details {
+      margin: 15px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin: -10px -10px 10px -10px;
+      padding: 10px;
+      background: var(--header-bg);
+      border-radius: 6px 6px 0 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'default',
+      themeVariables: {
+        primaryColor: '#e2e8f0',
+        primaryBorderColor: '#cbd5e1',
+        primaryTextColor: '#1e293b'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="kicker">Курсы 2025</div>
+    <h1>Руководства по LangChain</h1>
+    <p class="subtitle">Практические курсы по разработке приложений с использованием больших языковых моделей (LLM).</p>
+    
+    <div class="card">
+      <h2>📚 Оглавление</h2>
+      <ul>
+        <li><a href="#langchain-guide">1. LangChain: Практическое руководство от новичка до профи</a></li>
+        <li><a href="#chatbot-guide">2. LangChain на практике: Создание чат-ботов и веб-приложений</a></li>
+      </ul>
+    </div>
+
+    <section id="langchain-guide" class="card">
+      <h2>1) LangChain: Практическое руководство от новичка до профи</h2>
+      <p>Этот курс охватывает все основы работы с фреймворком LangChain. Вы научитесь:</p>
+      <ul>
+        <li>Понимать, что такое LLM и зачем нужен LangChain.</li>
+        <li>Настраивать окружение и устанавливать необходимые пакеты.</li>
+        <li>Создавать и оптимизировать промпты (Prompt Engineering).</li>
+        <li>Строить цепочки (Chains) и использовать LCEL.</li>
+        <li>Работать с памятью (Memory) и агентами (Agents).</li>
+        <li>Реализовывать RAG (Retrieval-Augmented Generation).</li>
+        <li>Использовать LangGraph для создания сложных пайплайнов.</li>
+        <li>Тестировать, отлаживать и мониторить приложения с помощью LangSmith.</li>
+        <li>Деплоить свои приложения с помощью LangServe, FastAPI и Docker.</li>
+      </ul>
+      
+      <div class="tip">
+        <strong>Пример использования:</strong> Сможете создать чат-бота, который отвечает на вопросы по документации, используя RAG.
+      </div>
+      
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Для кого этот курс?</h3>
+          <ul>
+            <li>Python-разработчики, которые хотят начать работать с LLM.</li>
+            <li>Новички в области искусственного интеллекта.</li>
+            <li>Разработчики, которые хотят создавать приложения на основе LLM.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Что вы получите?</h3>
+          <ul>
+            <li>Полное понимание архитектуры LangChain.</li>
+            <li>Навыки создания рабочих приложений с LLM.</li>
+            <li>Практический опыт в работе с RAG и агентами.</li>
+            <li>Знания по тестированию и деплою.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section-nav">
+        <a href="#chatbot-guide" class="nav-link">Следующий: Чат-боты →</a>
+      </div>
+    </section>
+
+    <section id="chatbot-guide" class="card">
+      <h2>2) LangChain на практике: Создание чат-ботов и веб-приложений</h2>
+      <p>Этот курс является логическим продолжением первого и фокусируется на практической реализации чат-ботов и веб-приложений с использованием современных технологий. Вы научитесь:</p>
+      <ul>
+        <li>Создавать чат-ботов на Python с использованием Aiogram и Telegram API.</li>
+        <li>Интегрировать бота с FastAPI для управления бизнес-логикой.</li>
+        <li>Использовать Redis для хранения состояния пользователей и очередей задач.</li>
+        <li>Хранить данные пользователя в SQLite или PostgreSQL.</li>
+        <li>Оркестрировать сервисы с помощью Docker Compose.</li>
+        <li>Интегрировать LLM-логику (через LangChain) в ваше приложение.</li>
+        <li>Тестировать и деплоить ваше приложение в продакшен.</li>
+      </ul>
+      
+      <div class="tip">
+        <strong>Пример использования:</strong> Создадите полноценный чат-бот, который может выполнять задания, напоминать о событиях и взаимодействовать с внешними сервисами.
+      </div>
+      
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Для кого этот курс?</h3>
+          <ul>
+            <li>Разработчики, которые уже знают основы LangChain.</li>
+            <li>Разработчики, которые хотят создать собственный чат-бот.</li>
+            <li>Разработчики, которые хотят создать веб-приложение с ИИ.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Что вы получите?</h3>
+          <ul>
+            <li>Навыки создания масштабируемых чат-ботов.</li>
+            <li>Практический опыт в работе с Docker и контейнерами.</li>
+            <li>Знания по архитектуре микросервисов.</li>
+            <li>Умение интегрировать LLM в реальные приложения.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section-nav">
+        <a href="#langchain-guide" class="nav-link">← Предыдущий: LangChain</a>
+      </div>
+    </section>
+
+    <div class="card">
+      <h2>📥 Скачать руководства</h2>
+      <p>Выберите интересующее вас руководство и скачайте его прямо сейчас:</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1. LangChain: Практическое руководство от новичка до профи</h3>
+          <p>Полный курс по LangChain, охватывающий все основы от установки до деплоя.</p>
+          <a href="01. LangChain: Практическое руководство от новичка до профи.html" class="nav-link">Скачать HTML</a>
+        </div>
+        <div class="card">
+          <h3>2. LangChain на практике: Создание чат-ботов и веб-приложений</h3>
+          <p>Практическое руководство по созданию чат-ботов и веб-приложений с использованием LangChain, FastAPI, Docker и других технологий.</p>
+          <a href="02. LangChain на практике: Создание чат-ботов и веб-приложений.html" class="nav-link">Скачать HTML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📖 Дополнительные материалы</h2>
+      <p>Для более глубокого изучения тем:</p>
+      <ul>
+        <li><a href="https://python.langchain.com/docs/">Официальная документация LangChain</a></li>
+        <li><a href="https://docs.smith.langchain.com/">LangSmith - мониторинг и отладка</a></li>
+        <li><a href="https://langchain-ai.github.io/langgraph/">LangGraph - создание сложных пайплайнов</a></li>
+        <li><a href="https://github.com/langchain-ai/langchain">GitHub репозиторий LangChain</a></li>
+      </ul>
+    </div>
+
+    <p class="footer">© 2025 Учебный конспект — свободно для образовательных целей. Автор: преподаватель программирования.</p>
+  </div>
+</body>
+</html>
