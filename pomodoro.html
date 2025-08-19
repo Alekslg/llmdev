@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🐍 Pomodoro ⏰</title>
+
+    <!-- Favicon в формате SVG (оранжево-красный) -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff4500' d='M6.7 1.3L5.3 2.7l2 2L8.7 3.3l-2-2zm10.6 0l-2 2l1.4 1.4l2-2l-1.4-1.4zM12 4a8 8 0 0 0-8 8c0 4.4 3.6 8 8 8s8-3.6 8-8a8 8 0 0 0-8-8zm0 2a6 6 0 0 1 6 6c0 3.3-2.7 6-6 6s-6-2.7-6-6a6 6 0 0 1 6-6zm-.5 2v4.3l3.2 1.9l.8-1.3l-2.5-1.5V8h-1.5z'/%3E%3C/svg%3E"
+    />
+
+    <style>
+      body {
+        font-family: "Courier New", monospace;
+        background-color: #0f0f23;
+        color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #1a1a2e;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+        width: 400px;
+        border: 1px solid #00a8ff;
+        margin: 20px;
+      }
+
+      h1 {
+        color: #00a8ff;
+        margin-top: 0;
+        text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+      }
+
+      .timer {
+        font-size: 3.5em;
+        margin: 20px 0;
+        color: #f39c12;
+        text-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+      }
+
+      .controls {
+        margin: 25px 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        background-color: #00a8ff;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        margin: 0 5px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1em;
+        font-family: inherit;
+        transition: all 0.3s;
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+        min-width: 100px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      button:hover {
+        background-color: #0097e6;
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(0, 168, 255, 0.6);
+      }
+
+      button:active {
+        transform: translateY(1px);
+        box-shadow: 0 0 10px rgba(0, 168, 255, 0.8);
+      }
+
+      #reset {
+        background-color: #e84118;
+        box-shadow: 0 0 15px rgba(232, 65, 24, 0.4);
+      }
+
+      #reset:hover {
+        background-color: #c23616;
+        box-shadow: 0 0 20px rgba(232, 65, 24, 0.6);
+      }
+
+      #pause {
+        background-color: #f39c12;
+        box-shadow: 0 0 15px rgba(243, 156, 18, 0.4);
+      }
+
+      #pause:hover {
+        background-color: #e67e22;
+        box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
+      }
+
+      #addTask {
+        background-color: #4cd137;
+        box-shadow: 0 0 15px rgba(76, 209, 55, 0.4);
+      }
+
+      #addTask:hover {
+        background-color: #44bd32;
+        box-shadow: 0 0 20px rgba(76, 209, 55, 0.6);
+      }
+
+      .break-btn {
+        background-color: #4cd137;
+        box-shadow: 0 0 15px rgba(76, 209, 55, 0.4);
+      }
+
+      .break-btn:hover {
+        background-color: #44bd32;
+        box-shadow: 0 0 20px rgba(76, 209, 55, 0.6);
+      }
+
+      .mode {
+        font-size: 1.2em;
+        margin: 15px 0;
+        height: 30px;
+      }
+
+      .work {
+        color: #f39c12;
+      }
+
+      .break {
+        color: #4cd137;
+      }
+
+      .counter {
+        margin-top: 20px;
+        font-size: 1.1em;
+        color: #9c88ff;
+      }
+
+      .snake {
+        position: absolute;
+        font-size: 24px;
+        z-index: -1;
+      }
+
+      .task-input {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      input {
+        background-color: #1e1e3a;
+        border: 1px solid #00a8ff;
+        border-radius: 5px;
+        padding: 10px;
+        width: 70%;
+        color: white;
+        font-family: inherit;
+        margin-right: 10px;
+      }
+
+      ::placeholder {
+        color: #55557a;
+      }
+
+      .tasks-section {
+        margin-top: 30px;
+        text-align: left;
+      }
+
+      .tasks-section h3 {
+        color: #00a8ff;
+        border-bottom: 1px solid #00a8ff;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+
+      .task-list {
+        max-height: 200px;
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+
+      .task-item {
+        background-color: #1e1e3a;
+        border: 1px solid #00a8ff;
+        border-radius: 5px;
+        padding: 12px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .task-text {
+        flex-grow: 1;
+        word-break: break-word;
+        padding-right: 10px;
+        cursor: pointer;
+      }
+
+      .task-text.editing {
+        cursor: text;
+      }
+
+      .task-input-edit {
+        width: 100%;
+        background-color: #1e1e3a;
+        border: 1px solid #00a8ff;
+        border-radius: 5px;
+        padding: 8px;
+        color: white;
+        font-family: inherit;
+        margin-bottom: 5px;
+      }
+
+      .task-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .delete-btn {
+        background-color: #e84118;
+        border: none;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 10px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .delete-btn:hover {
+        background-color: #c23616;
+        transform: scale(1.1);
+      }
+
+      .empty-tasks {
+        color: #55557a;
+        font-style: italic;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .task-timestamp {
+        font-size: 0.8em;
+        color: #55557a;
+        margin-top: 5px;
+      }
+
+      /* Стили для скроллбара */
+      .task-list::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .task-list::-webkit-scrollbar-track {
+        background: #1a1a2e;
+      }
+
+      .task-list::-webkit-scrollbar-thumb {
+        background: #00a8ff;
+        border-radius: 4px;
+      }
+
+      .task-list::-webkit-scrollbar-thumb:hover {
+        background: #0097e6;
+      }
+
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4cd137;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        display: none;
+      }
+
+      .title-timer {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: #f39c12;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      .settings {
+        margin: 20px 0;
+        background-color: #1e1e3a;
+        border-radius: 10px;
+        border: 1px solid #00a8ff;
+        overflow: hidden;
+      }
+
+      .settings-header {
+        background-color: #00a8ff;
+        color: white;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .settings-content {
+        padding: 15px;
+        display: none;
+      }
+
+      .setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .setting-label {
+        text-align: left;
+        flex: 1;
+      }
+
+      .setting-input {
+        width: 80px;
+        text-align: center;
+      }
+
+      .setting-unit {
+        margin-left: 5px;
+        color: #9c88ff;
+      }
+
+      .arrow {
+        transition: transform 0.3s;
+      }
+
+      .arrow.rotated {
+        transform: rotate(180deg);
+      }
+
+      /* Стили для кнопки добавления задачи */
+      #addTask {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+      }
+
+      #addTask span {
+        font-size: 16px;
+      }
+
+      /* Эффект волны при клике */
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+      }
+
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🐍 Pomodoro ⏳</h1>
+      <div class="timer" id="timer">25:00</div>
+      <div class="mode work" id="mode">Рабочий сеанс</div>
+
+      <div class="controls">
+        <button id="start">Старт</button>
+        <button id="pause">Пауза</button>
+        <button id="reset">Сброс</button>
+      </div>
+
+      <div class="break-settings-row">
+        <button id="startBreak" class="break-btn">Перерыв</button>
+        <button class="settings-toggle" id="settingsToggle">
+          <span>Настройки</span>
+          <span class="arrow" id="arrow">▼</span>
+        </button>
+      </div>
+
+      <div class="counter">
+        Завершено: <span id="completed">0</span> помидоров
+      </div>
+
+      <div class="settings" id="settingsPanel">
+        <div class="settings-content" id="settingsContent">
+          <div class="setting-row">
+            <span class="setting-label">Рабочий сеанс:</span>
+            <input
+              type="number"
+              id="workTime"
+              class="setting-input"
+              value="25"
+              min="1"
+              max="60"
+            />
+            <span class="setting-unit">минут</span>
+          </div>
+          <div class="setting-row">
+            <span class="setting-label">Короткий перерыв:</span>
+            <input
+              type="number"
+              id="shortBreak"
+              class="setting-input"
+              value="5"
+              min="1"
+              max="30"
+            />
+            <span class="setting-unit">минут</span>
+          </div>
+          <div class="setting-row">
+            <span class="setting-label">Длинный перерыв:</span>
+            <input
+              type="number"
+              id="longBreak"
+              class="setting-input"
+              value="15"
+              min="1"
+              max="60"
+            />
+            <span class="setting-unit">минут</span>
+          </div>
+          <div class="setting-row">
+            <span class="setting-label">Помидоров до длинного перерыва:</span>
+            <input
+              type="number"
+              id="pomodorosBeforeLongBreak"
+              class="setting-input"
+              value="4"
+              min="1"
+              max="10"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="task-input">
+        <input type="text" id="task" placeholder="Введите задачу..." />
+        <button id="addTask"><span>+</span></button>
+      </div>
+      <div class="tasks-section">
+        <h3>Список задач</h3>
+        <div class="task-list" id="taskList">
+          <div class="empty-tasks">Нет сохраненных задач</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="title-timer" id="titleTimer"></div>
+    <div class="notification" id="notification">Время истекло!</div>
+
+    <script>
+      // Элементы DOM
+      const timerDisplay = document.getElementById("timer");
+      const modeDisplay = document.getElementById("mode");
+      const startBtn = document.getElementById("start");
+      const pauseBtn = document.getElementById("pause");
+      const resetBtn = document.getElementById("reset");
+      const startBreakBtn = document.getElementById("startBreak");
+      const completedDisplay = document.getElementById("completed");
+      const taskInput = document.getElementById("task");
+      const addTaskBtn = document.getElementById("addTask");
+      const taskList = document.getElementById("taskList");
+      const titleTimer = document.getElementById("titleTimer");
+      const notification = document.getElementById("notification");
+
+      // Элементы настроек
+      const settingsToggle = document.getElementById("settingsToggle");
+      const settingsPanel = document.getElementById("settingsPanel");
+      const settingsContent = document.getElementById("settingsContent");
+      const arrow = document.getElementById("arrow");
+      const workTimeInput = document.getElementById("workTime");
+      const shortBreakInput = document.getElementById("shortBreak");
+      const longBreakInput = document.getElementById("longBreak");
+      const pomodorosBeforeLongBreakInput = document.getElementById(
+        "pomodorosBeforeLongBreak"
+      );
+
+      // Переменные состояния
+      let workTime = 25 * 60; // 25 минут в секундах
+      let shortBreakTime = 5 * 60; // 5 минут в секундах
+      let longBreakTime = 15 * 60; // 15 минут в секундах
+      let pomodorosBeforeLongBreak = 4; // количество помидоров до длинного перерыва
+
+      let timeLeft = workTime;
+      let timerMode = "work"; // 'work', 'shortBreak', 'longBreak'
+      let timerInterval = null;
+      let isRunning = false;
+      let completedPomodoros = 0;
+      let totalPomodoros = 0;
+      let tasks = [];
+      let startTime = null;
+      let endTime = null;
+      let originalTitle = document.title;
+
+      // Инициализация таймера
+      function initTimer() {
+        clearInterval(timerInterval);
+        timerMode = "work";
+        timeLeft = workTime;
+        isRunning = false;
+        startTime = null;
+        endTime = null;
+        updateDisplay();
+        updateTitleTimer();
+        document.title = originalTitle;
+        pauseBtn.textContent = "Пауза";
+      }
+
+      // Обновление настроек из полей ввода
+      function updateSettings() {
+        workTime = parseInt(workTimeInput.value) * 60 || 25 * 60;
+        shortBreakTime = parseInt(shortBreakInput.value) * 60 || 5 * 60;
+        longBreakTime = parseInt(longBreakInput.value) * 60 || 15 * 60;
+        pomodorosBeforeLongBreak =
+          parseInt(pomodorosBeforeLongBreakInput.value) || 4;
+
+        // Если таймер не запущен, обновляем текущее время
+        if (!isRunning) {
+          if (timerMode === "work") {
+            timeLeft = workTime;
+          } else if (timerMode === "shortBreak") {
+            timeLeft = shortBreakTime;
+          } else {
+            timeLeft = longBreakTime;
+          }
+          updateDisplay();
+        }
+      }
+
+      // Обновление отображения
+      function updateDisplay() {
+        const minutes = Math.floor(timeLeft / 60)
+          .toString()
+          .padStart(2, "0");
+        const seconds = (timeLeft % 60).toString().padStart(2, "0");
+        timerDisplay.textContent = `${minutes}:${seconds}`;
+
+        if (timerMode === "work") {
+          modeDisplay.textContent = "Рабочий сеанс";
+          modeDisplay.className = "mode work";
+          document.body.style.backgroundColor = "#0f0f23";
+        } else {
+          modeDisplay.textContent =
+            timerMode === "shortBreak" ? "Короткий перерыв" : "Длинный перерыв";
+          modeDisplay.className = "mode break";
+          document.body.style.backgroundColor = "#0a231f";
+        }
+
+        completedDisplay.textContent = completedPomodoros;
+      }
+
+      // Обновление таймера в заголовке вкладки
+      function updateTitleTimer() {
+        if (isRunning && endTime) {
+          const now = Date.now();
+          const remaining = Math.max(0, Math.floor((endTime - now) / 1000));
+          const minutes = Math.floor(remaining / 60)
+            .toString()
+            .padStart(2, "0");
+          const seconds = (remaining % 60).toString().padStart(2, "0");
+
+          const modeText =
+            timerMode === "work"
+              ? "Работа"
+              : timerMode === "shortBreak"
+              ? "Перерыв"
+              : "Длинный перерыв";
+          document.title = `[${minutes}:${seconds}] ${modeText} - 🐍 Pomodoro`;
+          titleTimer.textContent = `${minutes}:${seconds}`;
+          titleTimer.style.display = "block";
+        } else {
+          document.title = originalTitle;
+          titleTimer.style.display = "none";
+        }
+      }
+
+      // Звуковой эффект щелчка
+      function playClickSound() {
+        try {
+          const audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+
+          oscillator.frequency.value = 400;
+          oscillator.type = "sine";
+
+          gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 0.1
+          );
+
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.1);
+        } catch (e) {
+          // Игнорируем ошибки звука
+        }
+      }
+
+      // Эффект волны при клике
+      function createRipple(event) {
+        const button = event.currentTarget;
+        const circle = document.createElement("span");
+        const diameter = Math.max(button.clientWidth, button.clientHeight);
+        const radius = diameter / 2;
+
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${
+          event.clientX - button.getBoundingClientRect().left - radius
+        }px`;
+        circle.style.top = `${
+          event.clientY - button.getBoundingClientRect().top - radius
+        }px`;
+        circle.classList.add("ripple");
+
+        const ripple = button.getElementsByClassName("ripple")[0];
+        if (ripple) {
+          ripple.remove();
+        }
+
+        button.appendChild(circle);
+      }
+
+      // Запуск таймера
+      function startTimer() {
+        if (isRunning) return;
+
+        isRunning = true;
+
+        // Если это первый запуск или возобновление после паузы
+        if (!startTime) {
+          startTime = Date.now();
+          endTime = startTime + timeLeft * 1000;
+        } else {
+          // Возобновление после паузы - пересчитываем endTime
+          const elapsedPausedTime = Date.now() - (endTime - timeLeft * 1000);
+          endTime = Date.now() + timeLeft * 1000 - elapsedPausedTime;
+        }
+
+        timerInterval = setInterval(() => {
+          const now = Date.now();
+          timeLeft = Math.max(0, Math.floor((endTime - now) / 1000));
+          updateDisplay();
+          updateTitleTimer();
+
+          if (timeLeft <= 0) {
+            completeTimer();
+          }
+        }, 100);
+
+        pauseBtn.textContent = "Пауза";
+      }
+
+      // Пауза/возобновление таймера
+      function togglePause() {
+        if (isRunning) {
+          // Ставим на паузу
+          clearInterval(timerInterval);
+          isRunning = false;
+          updateTitleTimer();
+          pauseBtn.textContent = "Продолжить";
+        } else {
+          // Возобновляем
+          if (timeLeft > 0) {
+            isRunning = true;
+
+            // Пересчитываем endTime для возобновления
+            const elapsedPausedTime = Date.now() - (endTime - timeLeft * 1000);
+            endTime = Date.now() + timeLeft * 1000 - elapsedPausedTime;
+
+            timerInterval = setInterval(() => {
+              const now = Date.now();
+              timeLeft = Math.max(0, Math.floor((endTime - now) / 1000));
+              updateDisplay();
+              updateTitleTimer();
+
+              if (timeLeft <= 0) {
+                completeTimer();
+              }
+            }, 100);
+
+            pauseBtn.textContent = "Пауза";
+          }
+        }
+      }
+
+      // Запуск таймера перерыва
+      function startBreakTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        pauseBtn.textContent = "Пауза";
+
+        // Определяем какой перерыв запускать
+        const isLongBreak =
+          (totalPomodoros + 1) % pomodorosBeforeLongBreak === 0;
+        timerMode = isLongBreak ? "longBreak" : "shortBreak";
+        timeLeft = isLongBreak ? longBreakTime : shortBreakTime;
+
+        startTime = null;
+        endTime = null;
+
+        updateDisplay();
+        startTimer();
+      }
+
+      // Завершение таймера
+      function completeTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        pauseBtn.textContent = "Пауза";
+
+        // Воспроизведение звука завершения
+        try {
+          const audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+
+          oscillator.frequency.value = 800;
+          oscillator.type = "sine";
+
+          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(
+            0.01,
+            audioContext.currentTime + 1
+          );
+
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 1);
+        } catch (e) {
+          console.log("Звук недоступен");
+        }
+
+        // Показать уведомление
+        showNotification();
+
+        // Обработка завершения режима
+        if (timerMode === "work") {
+          completedPomodoros++;
+          totalPomodoros++;
+
+          // После определенного количества помидоров - длинный перерыв
+          if (totalPomodoros % pomodorosBeforeLongBreak === 0) {
+            timerMode = "longBreak";
+            timeLeft = longBreakTime;
+          } else {
+            timerMode = "shortBreak";
+            timeLeft = shortBreakTime;
+          }
+        } else {
+          timerMode = "work";
+          timeLeft = workTime;
+        }
+
+        startTime = null;
+        endTime = null;
+        updateDisplay();
+        updateTitleTimer();
+
+        // Автозапуск следующего таймера
+        setTimeout(() => {
+          startTimer();
+        }, 3000);
+      }
+
+      // Показать уведомление
+      function showNotification() {
+        notification.style.display = "block";
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 5000);
+      }
+
+      // Переключение видимости настроек
+      function toggleSettings() {
+        const isVisible = settingsContent.style.display === "block";
+        settingsContent.style.display = isVisible ? "none" : "block";
+        arrow.classList.toggle("rotated", !isVisible);
+      }
+
+      // Добавление задачи в список
+      function addTask() {
+        const taskText = taskInput.value.trim();
+        if (taskText) {
+          const task = {
+            id: Date.now(),
+            text: taskText,
+            timestamp: new Date().toLocaleString("ru-RU"),
+          };
+
+          tasks.push(task);
+          saveTasks();
+          renderTasks();
+          taskInput.value = "";
+          taskInput.focus();
+        }
+      }
+
+      // Удаление задачи
+      function deleteTask(id) {
+        tasks = tasks.filter((task) => task.id !== id);
+        saveTasks();
+        renderTasks();
+      }
+
+      // Редактирование задачи
+      function editTask(id) {
+        const task = tasks.find((t) => t.id === id);
+        if (!task) return;
+
+        const taskElement = document.querySelector(`[data-task-id="${id}"]`);
+        if (!taskElement) return;
+
+        // Создаем поле ввода для редактирования
+        const editInput = document.createElement("input");
+        editInput.type = "text";
+        editInput.className = "task-input-edit";
+        editInput.value = task.text;
+
+        // Заменяем текст на поле ввода
+        taskElement.innerHTML = "";
+        taskElement.appendChild(editInput);
+        editInput.focus();
+
+        // Функция сохранения изменений
+        function saveChanges() {
+          const newText = editInput.value.trim();
+          if (newText) {
+            task.text = newText;
+            saveTasks();
+          }
+          renderTasks();
+        }
+
+        // Обработчики событий
+        editInput.addEventListener("blur", saveChanges);
+        editInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            saveChanges();
+          }
+        });
+      }
+
+      // Сохранение задач в localStorage
+      function saveTasks() {
+        localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
+      }
+
+      // Загрузка задач из localStorage
+      function loadTasks() {
+        const savedTasks = localStorage.getItem("pomodoroTasks");
+        if (savedTasks) {
+          tasks = JSON.parse(savedTasks);
+          renderTasks();
+        }
+      }
+
+      // Отображение списка задач
+      function renderTasks() {
+        if (tasks.length === 0) {
+          taskList.innerHTML =
+            '<div class="empty-tasks">Нет сохраненных задач</div>';
+          return;
+        }
+
+        taskList.innerHTML = "";
+        tasks.forEach((task) => {
+          const taskElement = document.createElement("div");
+          taskElement.className = "task-item";
+          taskElement.setAttribute("data-task-id", task.id);
+          taskElement.innerHTML = `
+                    <div class="task-text" onclick="editTask(${task.id})">
+                        ${task.text}
+                        <div class="task-timestamp">${task.timestamp}</div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="delete-btn" onclick="deleteTask(${task.id})" title="Удалить">×</button>
+                    </div>
+                `;
+          taskList.appendChild(taskElement);
+        });
+      }
+
+      // Добавление обработчиков кликов для звуков и эффектов
+      function addClickEffects() {
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            playClickSound();
+            createRipple(e);
+          });
+        });
+      }
+
+      // Обработчики событий
+      startBtn.addEventListener("click", startTimer);
+      pauseBtn.addEventListener("click", togglePause);
+      resetBtn.addEventListener("click", initTimer);
+      startBreakBtn.addEventListener("click", startBreakTimer);
+      addTaskBtn.addEventListener("click", addTask);
+      taskInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") addTask();
+      });
+
+      // Обработчики изменения настроек
+      workTimeInput.addEventListener("change", updateSettings);
+      shortBreakInput.addEventListener("change", updateSettings);
+      longBreakInput.addEventListener("change", updateSettings);
+      pomodorosBeforeLongBreakInput.addEventListener("change", updateSettings);
+
+      // Обработчик переключения настроек
+      settingsToggle.addEventListener("click", toggleSettings);
+
+      // Обработчик видимости вкладки
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          // Вкладка стала неактивной
+          updateTitleTimer();
+        } else {
+          // Вкладка стала активной
+          document.title = originalTitle;
+          titleTimer.style.display = "none";
+          updateDisplay();
+        }
+      });
+
+      // Инициализация
+      initTimer();
+      loadTasks();
+      addClickEffects();
+
+      // Создание анимированных змей
+      function createSnake() {
+        const snake = document.createElement("div");
+        snake.className = "snake";
+        snake.innerHTML = "🐍";
+        document.body.appendChild(snake);
+
+        const startX = Math.random() * window.innerWidth;
+        const startY = Math.random() * window.innerHeight;
+        let x = startX;
+        let y = startY;
+
+        const speed = 0.5 + Math.random() * 1;
+        const angle = Math.random() * Math.PI * 2;
+        let dx = Math.cos(angle) * speed;
+        let dy = Math.sin(angle) * speed;
+
+        snake.style.left = `${x}px`;
+        snake.style.top = `${y}px`;
+
+        function move() {
+          x += dx;
+          y += dy;
+
+          // Отскок от краев
+          if (x <= 0 || x >= window.innerWidth - 30) dx = -dx;
+          if (y <= 0 || y >= window.innerHeight - 30) dy = -dy;
+
+          snake.style.left = `${x}px`;
+          snake.style.top = `${y}px`;
+
+          requestAnimationFrame(move);
+        }
+
+        move();
+      }
+
+      // Создание нескольких змей
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createSnake, i * 500);
+      }
+
+      // Делаем функции доступными глобально для onclick
+      window.deleteTask = deleteTask;
+      window.editTask = editTask;
+    </script>
+  </body>
+</html>
