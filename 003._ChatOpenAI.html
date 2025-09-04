@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLMdev.ru — Курсы по LangChain и LLM (2025)</title>
+    <meta
+      name="description"
+      content="Практические курсы по LangChain: от основ до создания чат-ботов и веб-приложений с использованием больших языковых моделей."
+    />
+    <meta
+      name="keywords"
+      content="LangChain, LLM, Python, чат-боты, искусственный интеллект, RAG, агенты, FastAPI, Docker, обучение"
+    />
+    <style>
+      :root {
+        --primary: #4a6fa5;
+        --secondary: #166088;
+        --accent: #ff6b35;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray: #6c757d;
+        --border: #dee2e6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background-color: #fff;
+      }
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      nav {
+        background-color: var(--dark);
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: var(--accent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      section {
+        margin-bottom: 4rem;
+      }
+      h2,
+      h3 {
+        color: var(--secondary);
+        margin-bottom: 1.2rem;
+      }
+      h2 {
+        font-size: 2rem;
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+      }
+      h3 {
+        font-size: 1.6rem;
+        color: var(--primary);
+      }
+      .course-card,
+      .doc-section {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.8rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .course-card:hover,
+      .doc-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+      ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      .highlight {
+        background-color: #e3f2fd;
+        border-left: 4px solid var(--primary);
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+      }
+      .example {
+        font-style: italic;
+        color: var(--gray);
+        margin: 1rem 0;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.95rem;
+        border: 1px solid #ddd;
+      }
+      code {
+        font-family: "Courier New", monospace;
+        background: #eee;
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.95em;
+      }
+      footer {
+        background-color: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 2rem 1rem;
+        margin-top: 4rem;
+      }
+      footer p {
+        opacity: 0.8;
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        header p {
+          font-size: 1rem;
+        }
+        .course-card,
+        .doc-section {
+          padding: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- === ДОКУМЕНТАЦИЯ === -->
+      <section id="docs">
+        <h2>ChatOpenAI: Подробное руководство</h2>
+        <div class="doc-section">
+          <p>
+            <strong>ChatOpenAI</strong> — это интеграция LangChain с
+            чат-моделями OpenAI. Ниже представлен максимально детальный перевод
+            официальной документации.
+          </p>
+
+          <h3>Обзор</h3>
+          <p>
+            OpenAI предоставляет несколько чат-моделей. Информацию о последних
+            моделях, их стоимости, размере контекстного окна и поддерживаемых
+            типах входных данных можно найти в
+            <a href="https://platform.openai.com/docs" target="_blank"
+              >документации OpenAI</a
+            >.
+          </p>
+          <p>
+            <strong>Важно:</strong> Некоторые модели OpenAI также доступны через
+            платформу Microsoft Azure. Для этого используйте интеграцию
+            <code>AzureChatOpenAI</code>.
+          </p>
+
+          <h3>Настройка</h3>
+          <p>Для работы с моделями OpenAI вам понадобится:</p>
+          <ol>
+            <li>Аккаунт OpenAI и API-ключ</li>
+            <li>Установленный пакет <code>langchain-openai</code></li>
+          </ol>
+
+          <h4>Учётные данные</h4>
+          <p>
+            Перейдите на
+            <a href="https://platform.openai.com" target="_blank"
+              >https://platform.openai.com</a
+            >, зарегистрируйтесь и получите API-ключ. Затем установите
+            переменную окружения:
+          </p>
+          <pre>
+import getpass
+import os
+
+if not os.environ.get("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = getpass.getpass("Введите ваш OpenAI API ключ: ")
+        </pre
+          >
+
+          <p>
+            Для автоматического трейсинга вызовов моделей активируйте LangSmith:
+          </p>
+          <pre>
+# os.environ["LANGSMITH_API_KEY"] = getpass.getpass("Введите ваш LangSmith API ключ: ")
+# os.environ["LANGSMITH_TRACING"] = "true"
+        </pre
+          >
+
+          <h4>Установка</h4>
+          <pre>
+%pip install -qU langchain-openai
+        </pre
+          >
+
+          <h3>Создание экземпляра</h3>
+          <pre>
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="gpt-4o",
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+    # api_key="...",  # если хотите передать ключ напрямую
+    # base_url="...",
+    # organization="..."
+)
+        </pre
+          >
+
+          <h3>Вызов модели</h3>
+          <pre>
+messages = [
+    ("system", "Вы — полезный ассистент, переводящий с английского на французский."),
+    ("human", "I love programming.")
+]
+ai_msg = llm.invoke(messages)
+print(ai_msg.content)  # Вывод: J'adore la programmation.
+        </pre
+          >
+
+          <h3>Цепочки (Chaining)</h3>
+          <p>Можно комбинировать модель с шаблоном промпта:</p>
+          <pre>
+from langchain_core.prompts import ChatPromptTemplate
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Вы переводите с {input_language} на {output_language}."),
+    ("human", "{input}")
+])
+
+chain = prompt | llm
+result = chain.invoke({
+    "input_language": "English",
+    "output_language": "German",
+    "input": "I love programming."
+})
+print(result.content)  # Ich liebe das Programmieren.
+        </pre
+          >
+
+          <h3>Вызов инструментов (Tool Calling)</h3>
+          <p>
+            OpenAI поддерживает вызов инструментов (функций). Можно передавать
+            Pydantic-модели, словари, LangChain-инструменты и функции.
+          </p>
+          <pre>
+from pydantic import BaseModel, Field
+
+class GetWeather(BaseModel):
+    """Получить погоду в указанном месте"""
+    location: str = Field(..., description="Город и штат, например: San Francisco, CA")
+
+llm_with_tools = llm.bind_tools([GetWeather])
+ai_msg = llm_with_tools.invoke("Какая погода в Сан-Франциско?")
+print(ai_msg.tool_calls)  # [{'name': 'GetWeather', 'args': {'location': 'San Francisco, CA'}}]
+        </pre
+          >
+
+          <h4>Строгий режим (strict=True)</h4>
+          <p>
+            Начиная с 6 августа 2024, OpenAI поддерживает строгую проверку
+            схемы. При этом нельзя использовать опциональные поля (с
+            default-значениями).
+          </p>
+          <pre>
+llm_with_tools = llm.bind_tools([GetWeather], strict=True)
+        </pre
+          >
+
+          <h3>Встроенные инструменты (Responses API)</h3>
+          <p>
+            OpenAI поддерживает Responses API для агентских приложений. Доступны
+            встроенные инструменты:
+          </p>
+
+          <h4>Поиск в интернете</h4>
+          <pre>
+tool = {"type": "web_search_preview"}
+llm_with_tools = llm.bind_tools([tool])
+response = llm_with_tools.invoke("Какая хорошая новость сегодня?")
+print(response.text())  # Текст с цитированием источников
+        </pre
+          >
+
+          <h4>Генерация изображений</h4>
+          <pre>
+tool = {"type": "image_generation", "quality": "high"}
+llm_with_tools = llm.bind_tools([tool])
+ai_msg = llm_with_tools.invoke("Нарисуй милого кота под зонтом")
+# Изображение в base64 находится в ai_msg.additional_kwargs["tool_outputs"][0]["result"]
+        </pre
+          >
+
+          <h4>Поиск в файлах</h4>
+          <pre>
+tool = {
+    "type": "file_search",
+    "vector_store_ids": ["vs_..."]
+}
+llm_with_tools = llm.bind_tools([tool])
+response = llm_with_tools.invoke("Что такое Deep Research от OpenAI?")
+print(response.text())
+        </pre
+          >
+
+          <h4>Использование компьютера (preview)</h4>
+          <p>
+            Специализированная модель для взаимодействия с интерфейсами.
+            Поддерживает скриншоты и действия мыши.
+          </p>
+
+          <h4>Интерпретатор кода</h4>
+          <pre>
+llm_with_tools = llm.bind_tools([{"type": "code_interpreter", "container": {"type": "auto"}}])
+response = llm_with_tools.invoke("Чему равно 3^3?")
+        </pre
+          >
+
+          <h3>Мультимодальные входы</h3>
+          <p>Поддержка изображений, PDF и аудио:</p>
+          <pre>
+# Изображение по URL
+content_block = {
+    "type": "image_url",
+    "image_url": {"url": "https://example.com/image.jpg"}
+}
+
+# PDF в base64
+content_block = {
+    "type": "file",
+    "file": {
+        "filename": "doc.pdf",
+        "file_data": "data:application/pdf;base64,..."
+    }
+}
+        </pre
+          >
+
+          <h3>Предсказанный вывод (Predicted Output)</h3>
+          <p>Для уменьшения задержки можно передать часть ожидаемого ответа:</p>
+          <pre>
+response = llm.invoke(
+    [{"role": "user", "content": query}, {"role": "user", "content": code}],
+    prediction={"type": "content", "content": code}
+)
+        </pre
+          >
+
+          <h3>Генерация аудио (preview)</h3>
+          <pre>
+llm = ChatOpenAI(
+    model="gpt-4o-audio-preview",
+    model_kwargs={
+        "modalities": ["text", "audio"],
+        "audio": {"voice": "alloy", "format": "wav"}
+    }
+)
+output = llm.invoke([("human", "Вы сделаны OpenAI? Ответьте да или нет")])
+# Аудио в base64: output.additional_kwargs['audio']['data']
+        </pre
+          >
+
+          <h3>Гибкая обработка (Flex processing)</h3>
+          <p>Для не критичных задач — более дешёвый, но медленный режим:</p>
+          <pre>
+llm = ChatOpenAI(model="o4-mini", service_tier="flex")
+        </pre
+          >
+        </div>
+      </section>
+
+      <!-- === МАТЕРИАЛЫ === -->
+      <section id="materials">
+        <h2>Дополнительные материалы</h2>
+        <div class="course-card">
+          <p>Для более глубокого изучения тем мы рекомендуем:</p>
+          <ul>
+            <li>
+              <a
+                href="https://python.langchain.com/"
+                target="_blank"
+                style="color: var(--accent)"
+                >Официальная документация LangChain</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://platform.openai.com/docs"
+                target="_blank"
+                style="color: var(--accent)"
+                >Документация OpenAI API</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.docker.com/"
+                target="_blank"
+                style="color: var(--accent)"
+                >Docker и Docker Compose</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://redis.io/documentation/"
+                target="_blank"
+                style="color: var(--accent)"
+                >Работа с Redis</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://fastapi.tiangolo.com/"
+                target="_blank"
+                style="color: var(--accent)"
+                >FastAPI: современный фреймворк для API</a
+              >
+            </li>
+          </ul>
+          <p style="margin-top: 1.5rem">
+            Подписывайтесь на обновления — в 2025 году запланированы новые курсы
+            по LangGraph, агентам и продвинутому RAG!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 LLMdev.ru. Все права защищены.</p>
+      <p>
+        Создано для разработчиков, которые хотят освоить будущее — разработку с
+        LLM.
+      </p>
+    </footer>
+  </body>
+</html>
