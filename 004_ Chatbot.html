@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание чат-бота | LangChain Tutorial</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --ink: #1e293b;
+      --ink-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-2: #10b981;
+      --warn: #f59e0b;
+      --err: #ef4444;
+      --code-bg: #f1f5f9;
+      --border: #e2e8f0;
+      --header-bg: #f1f5f9;
+    }
+
+    html,
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--ink);
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 12px;
+      letter-spacing: 0.3px;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 15px;
+    }
+
+    .subtitle {
+      color: var(--ink-dim);
+      text-align: center;
+      margin-bottom: 26px;
+      font-size: 1.1rem;
+    }
+
+    .kicker {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .grid.cols-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      background: var(--code-bg);
+      color: var(--ink);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: "Monaco", "Consolas", "Courier New", monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--ink);
+      padding: 14px 16px;
+      border-radius: 12px;
+      overflow: auto;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .toc {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+
+    .toc ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--ink-dim);
+    }
+
+    .tip {
+      border-left: 4px solid var(--accent-2);
+      background: #f0fdf4;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+
+    .warn {
+      border-left: 4px solid var(--warn);
+      background: #fffbeb;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+
+    .danger {
+      border-left: 4px solid var(--err);
+      background: #fef2f2;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 15px 0;
+    }
+
+    .muted {
+      color: var(--ink-dim);
+    }
+
+    .footer {
+      margin: 50px 0 30px;
+      text-align: center;
+      color: var(--ink-dim);
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--ink-dim);
+    }
+
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      border: 1px solid #94a3b8;
+      background: var(--header-bg);
+      border-bottom-width: 3px;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    .mermaid {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 15px 0;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--header-bg);
+      font-weight: 600;
+    }
+
+    .roadmap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0 0;
+    }
+
+    .roadmap .step {
+      background: var(--header-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+
+    ul,
+    ol {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    details {
+      margin: 15px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin: -10px -10px 10px -10px;
+      padding: 10px;
+      background: var(--header-bg);
+      border-radius: 6px 6px 0 0;
+    }
+
+    .section-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: var(--header-bg);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Создание чат-бота</h1>
+
+    <p class="subtitle">Это руководство ранее использовало абстракцию <code>RunnableWithMessageHistory</code>. Вы можете ознакомиться с той версией документации в документах v0.2.</p>
+
+    <div class="card">
+      <p>Начиная с релиза v0.3 LangChain, мы рекомендуем пользователям LangChain использовать <strong>персистентность (persistence) LangGraph</strong> для включения <code>memory</code> в новые приложения на LangChain.</p>
+      <p>Если ваш код уже использует <code>RunnableWithMessageHistory</code> или <code>BaseChatMessageHistory</code>, вам <strong>не</strong> нужно вносить какие-либо изменения. Мы не планируем отказываться от этой функциональности в ближайшем будущем, поскольку она работает для простых чат-приложений, и любой код, использующий <code>RunnableWithMessageHistory</code>, будет продолжать работать как ожидается.</p>
+      <p>Пожалуйста, см. раздел <a href="#migrate">How to migrate to LangGraph Memory</a> для получения более подробной информации.</p>
+    </div>
+
+    <h2 id="overview">Обзор</h2>
+    <p>Мы рассмотрим пример того, как спроектировать и реализовать чат-бота, работающего на базе LLM. Этот чат-бот сможет вести беседу и запоминать предыдущие взаимодействия с чат-моделью.</p>
+    <p>Обратите внимание, что этот чат-бот, который мы создадим, будет использовать языковую модель только для ведения беседы. Существует несколько других связанных концепций, которые могут вас заинтересовать:</p>
+    <ul>
+      <li><strong>Conversational RAG</strong>: Обеспечьте чат-боту взаимодействие с внешним источником данных.</li>
+      <li><strong>Agents</strong>: Создайте чат-бота, который может выполнять действия.</li>
+    </ul>
+    <p>Это руководство охватит основы, которые будут полезны для освоения этих двух более продвинутых тем, но вы можете перейти к ним напрямую, если пожелаете.</p>
+
+    <h2 id="setup">Настройка</h2>
+
+    <h3>Jupyter Notebook</h3>
+    <p>Это руководство (и большинство других руководств в документации) использует Jupyter notebooks и предполагает, что читатель также использует их. Jupyter notebooks идеально подходят для изучения работы с системами LLM, поскольку часто что-то может пойти не так (неожиданный вывод, API недоступен и т.д.), и прохождение руководств в интерактивной среде — отличный способ лучше их понять.</p>
+    <p>Это и другие учебные пособия, пожалуй, наиболее удобно запускать в Jupyter notebook. Инструкции по установке см. <a href="#">здесь</a>.</p>
+
+    <h3>Установка</h3>
+    <p>Для этого учебного пособия нам понадобятся <code>langchain-core</code> и <code>langgraph</code>. Это руководство требует <code>langgraph >= 0.2.28</code>.</p>
+
+    <div class="card">
+      <h4>Pip</h4>
+      <pre><code>pip install langchain-core langgraph>0.2.27</code></pre>
+      <h4>Conda</h4>
+      <pre><code>conda install langchain-core langgraph>0.2.27 -c conda-forge</code></pre>
+      <p>Для получения более подробной информации см. наше <a href="#">Руководство по установке</a>.</p>
+    </div>
+
+    <h3>LangSmith</h3>
+    <p>Многие приложения, которые вы создаете с помощью LangChain, будут содержать несколько шагов с несколькими вызовами LLM. По мере того как эти приложения становятся все более и более сложными, становится крайне важно иметь возможность проверять, что именно происходит внутри вашей цепочки или агента. Лучший способ сделать это — с помощью LangSmith.</p>
+    <p>После регистрации по ссылке выше <strong>(вам нужно будет создать API-ключ на странице Settings -> API Keys на веб-сайте LangSmith)</strong>, обязательно установите переменные среды, чтобы начать запись трассировок:</p>
+
+    <pre><code>export LANGSMITH_TRACING="true"
+export LANGSMITH_API_KEY="..."</code></pre>
+
+    <p>Или, если вы работаете в ноутбуке, вы можете установить их с помощью:</p>
+
+    <pre><code>import getpass
+import os
+
+os.environ["LANGSMITH_TRACING"] = "true"
+os.environ["LANGSMITH_API_KEY"] = getpass.getpass()</code></pre>
+
+    <h2 id="quickstart">Быстрый старт</h2>
+    <p>Для начала давайте узнаем, как использовать языковую модель саму по себе. LangChain поддерживает множество различных языковых моделей, которые можно использовать взаимозаменяемо — выберите ту, которую хотите использовать ниже!</p>
+
+    <pre><code>pip install -qU "langchain[google-genai]"</code></pre>
+
+    <pre><code>import getpass
+import os
+
+if not os.environ.get("GOOGLE_API_KEY"):
+    os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter API key for Google Gemini: ")
+
+from langchain.chat_models import init_chat_model
+
+model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")</code></pre>
+
+    <p>Давайте сначала используем модель напрямую. <code>ChatModel</code>s являются экземплярами LangChain "Runnables", что означает, что они предоставляют стандартный интерфейс для взаимодействия с ними. Чтобы просто вызвать модель, мы можем передать список сообщений методу <code>.invoke</code>.</p>
+
+    <pre><code>from langchain_core.messages import HumanMessage
+
+model.invoke([HumanMessage(content="Hi! I'm Bob")])</code></pre>
+    <p class="muted"><strong>API Reference:</strong> HumanMessage</p>
+
+    <pre><code>AIMessage(content='Hi Bob! How can I assist you today?', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 10, 'prompt_tokens': 11, 'total_tokens': 21, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_0705bf87c0', 'finish_reason': 'stop', 'logprobs': None}, id='run-5211544f-da9f-4325-8b8e-b3d92b2fc71a-0', usage_metadata={'input_tokens': 11, 'output_tokens': 10, 'total_tokens': 21, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})</code></pre>
+
+    <p>Сама по себе модель не имеет никакого понятия о состоянии. Например, если вы зададите уточняющий вопрос:</p>
+
+    <pre><code>model.invoke([HumanMessage(content="What's my name?")])</code></pre>
+
+    <pre><code>AIMessage(content="I'm sorry, but I don't have access to personal information about users unless it has been shared with me in the course of our conversation. How can I assist you today?", additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 11, 'total_tokens': 45, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_0705bf87c0', 'finish_reason': 'stop', 'logprobs': None}, id='run-a2d13a18-7022-4784-b54f-f85c097d1075-0', usage_metadata={'input_tokens': 11, 'output_tokens': 34, 'total_tokens': 45, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})</code></pre>
+
+    <p>Мы можем увидеть, что он не учитывает предыдущий ход разговора и не может ответить на вопрос. Это создает ужасный опыт чат-бота!</p>
+    <p>Чтобы обойти это, нам нужно передать всю историю беседы в модель. Давайте посмотрим, что произойдет, когда мы это сделаем:</p>
+
+    <pre><code>from langchain_core.messages import AIMessage
+
+model.invoke(
+    [
+        HumanMessage(content="Hi! I'm Bob"),
+        AIMessage(content="Hello Bob! How can I assist you today?"),
+        HumanMessage(content="What's my name?"),
+    ]
+)</code></pre>
+    <p class="muted"><strong>API Reference:</strong> AIMessage</p>
+
+    <pre><code>AIMessage(content='Your name is Bob! How can I help you today, Bob?', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 14, 'prompt_tokens': 33, 'total_tokens': 47, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_0705bf87c0', 'finish_reason': 'stop', 'logprobs': None}, id='run-34bcccb3-446e-42f2-b1de-52c09936c02c-0', usage_metadata={'input_tokens': 33, 'output_tokens': 14, 'total_tokens': 47, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})</code></pre>
+
+    <p>И теперь мы видим, что получаем хороший ответ!</p>
+    <p>Это основная идея, лежащая в основе способности чат-бота вести разговор. Так как же нам лучше всего это реализовать?</p>
+
+    <h2 id="persistence">Персистентность сообщений</h2>
+    <p>LangGraph реализует встроенный слой персистентности, что делает его идеальным для чат-приложений, поддерживающих несколько ходов разговора.</p>
+    <p>Обертывание нашей чат-модели в минимальное приложение LangGraph позволяет нам автоматически сохранять историю сообщений, упрощая разработку приложений с несколькими ходами.</p>
+    <p>LangGraph поставляется с простым чекпоинтером в памяти, который мы используем ниже. См. его документацию для получения более подробной информации, включая то, как использовать различные бэкенды персистентности (например, SQLite или Postgres).</p>
+
+    <pre><code>from langgraph.checkpoint.memory import MemorySaver
+from langgraph.graph import START, MessagesState, StateGraph
+
+# Define a new graph
+workflow = StateGraph(state_schema=MessagesState)
+
+# Define the function that calls the model
+def call_model(state: MessagesState):
+    response = model.invoke(state["messages"])
+    return {"messages": response}
+
+# Define the (single) node in the graph
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+
+# Add memory
+memory = MemorySaver()
+app = workflow.compile(checkpointer=memory)</code></pre>
+
+    <p>Теперь нам нужно создать <code>config</code>, который мы передаем в runnable каждый раз. Этот конфиг содержит информацию, которая не является частью входных данных напрямую, но все же полезна. В данном случае мы хотим включить <code>thread_id</code>. Это должно выглядеть так:</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc123"}}</code></pre>
+
+    <p>Это позволяет нам поддерживать несколько потоков беседы с одним приложением, что является обычным требованием, когда в вашем приложении есть несколько пользователей.</p>
+    <p>Затем мы можем вызвать приложение:</p>
+
+    <pre><code>query = "Hi! I'm Bob."
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()  # output contains all messages in state</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Hi Bob! How can I assist you today?</code></pre>
+
+    <pre><code>query = "What's my name?"
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Your name is Bob! How can I help you today, Bob?</code></pre>
+
+    <p>Отлично! Теперь наш чат-бот что-то о нас помнит. Если мы изменим конфиг, чтобы сослаться на другой <code>thread_id</code>, мы увидим, что он начинает разговор заново.</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc234"}}
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+I'm sorry, but I don't have access to personal information about you unless you've shared it in this conversation. How can I assist you today?</code></pre>
+
+    <p>Однако мы всегда можем вернуться к исходной беседе (поскольку мы сохраняем ее в базе данных)</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc123"}}
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Your name is Bob. What would you like to discuss today?</code></pre>
+
+    <p>Вот как мы можем поддерживать беседы чат-бота со многими пользователями!</p>
+    <p>Для асинхронной поддержки обновите узел <code>call_model</code>, чтобы он стал асинхронной функцией, и используйте <code>.ainvoke</code> при вызове приложения:</p>
+
+    <pre><code># Async function for node:
+async def call_model(state: MessagesState):
+    response = await model.ainvoke(state["messages"])
+    return {"messages": response}
+
+# Define graph as before:
+workflow = StateGraph(state_schema=MessagesState)
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+app = workflow.compile(checkpointer=MemorySaver())
+
+# Async invocation:
+output = await app.ainvoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <p>Сейчас все, что мы сделали, — это добавили простой слой персистентности вокруг модели. Мы можем начать делать чат-бота более сложным и персонализированным, добавив шаблон промпта.</p>
+
+    <h2 id="prompts">Шаблоны промптов</h2>
+    <p>Шаблоны промптов помогают преобразовать необработанную пользовательскую информацию в формат, с которым может работать LLM. В данном случае необработанный пользовательский ввод — это просто сообщение, которое мы передаем LLM. Давайте теперь сделаем это немного сложнее. Во-первых, добавим системное сообщение с некоторыми пользовательскими инструкциями (но по-прежнему принимая сообщения в качестве ввода). Затем мы добавим больше входных данных, кроме просто сообщений.</p>
+    <p>Чтобы добавить системное сообщение, мы создадим <code>ChatPromptTemplate</code>. Мы будем использовать <code>MessagesPlaceholder</code>, чтобы передать все сообщения.</p>
+
+    <pre><code>from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+prompt_template = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You talk like a pirate. Answer all questions to the best of your ability.",
+        ),
+        MessagesPlaceholder(variable_name="messages"),
+    ]
+)</code></pre>
+
+    <p>Теперь мы можем обновить наше приложение, чтобы включить этот шаблон:</p>
+
+    <pre><code>workflow = StateGraph(state_schema=MessagesState)
+
+def call_model(state: MessagesState):
+    prompt = prompt_template.invoke(state)
+    response = model.invoke(prompt)
+    return {"messages": response}
+
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+
+memory = MemorySaver()
+app = workflow.compile(checkpointer=memory)</code></pre>
+
+    <p>Мы вызываем приложение так же, как и раньше:</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc345"}}
+query = "Hi! I'm Jim."
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Ahoy there, Jim! What brings ye to these waters today? Be ye seekin' treasure, knowledge, or perhaps a good tale from the high seas? Arrr!</code></pre>
+
+    <pre><code>query = "What is my name?"
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Ye be called Jim, matey! A fine name fer a swashbuckler such as yerself! What else can I do fer ye? Arrr!</code></pre>
+
+    <p>Потрясающе! Теперь давайте сделаем наш промпт немного сложнее. Допустим, шаблон промпта теперь выглядит примерно так:</p>
+
+    <pre><code>prompt_template = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are a helpful assistant. Answer all questions to the best of your ability in {language}.",
+        ),
+        MessagesPlaceholder(variable_name="messages"),
+    ]
+)</code></pre>
+
+    <p>Обратите внимание, что мы добавили новый входной параметр <code>language</code> в промпт. Теперь наше приложение имеет два параметра — входные данные <code>messages</code> и <code>language</code>. Мы должны обновить состояние нашего приложения, чтобы отразить это:</p>
+
+    <pre><code>from typing import Sequence
+
+from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
+from typing_extensions import Annotated, TypedDict
+
+class State(TypedDict):
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+    language: str
+
+workflow = StateGraph(state_schema=State)
+
+def call_model(state: State):
+    prompt = prompt_template.invoke(state)
+    response = model.invoke(prompt)
+    return {"messages": [response]}
+
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+
+memory = MemorySaver()
+app = workflow.compile(checkpointer=memory)</code></pre>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc456"}}
+query = "Hi! I'm Bob."
+language = "Spanish"
+
+input_messages = [HumanMessage(query)]
+output = app.invoke(
+    {"messages": input_messages, "language": language},
+    config,
+)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+¡Hola, Bob! ¿Cómo puedo ayudarte hoy?</code></pre>
+
+    <p>Обратите внимание, что все состояние сохраняется, поэтому мы можем опустить параметры, такие как <code>language</code>, если не требуется вносить изменения:</p>
+
+    <pre><code>query = "What is my name?"
+
+input_messages = [HumanMessage(query)]
+output = app.invoke(
+    {"messages": input_messages},
+    config,
+)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>==================================[1m Ai Message [0m==================================
+
+Tu nombre es Bob. ¿Hay algo más en lo que pueda ayudarte?</code></pre>
+
+    <p>Чтобы понять, что происходит внутри, ознакомьтесь с этой <a href="#">трассировкой LangSmith</a>.</p>
+
+    <h2 id="history">Управление историей беседы</h2>
+    <p>Одна важная концепция, которую необходимо понять при создании чат-ботов, — это то, как управлять историей беседы. Если ее не контролировать, список сообщений будет расти бесконтрольно и потенциально может переполнить контекстное окно LLM. Поэтому важно добавить шаг, который ограничивает размер передаваемых сообщений.</p>
+    <p><strong>Важно: вы захотите сделать это ДО шаблона промпта, но ПОСЛЕ загрузки предыдущих сообщений из Message History.</strong></p>
+    <p>Мы можем сделать это, добавив простой шаг перед промптом, который соответствующим образом изменяет ключ <code>messages</code>, а затем обернуть эту новую цепочку в класс Message History.</p>
+    <p>LangChain поставляется с несколькими встроенными помощниками для управления списком сообщений. В этом случае мы будем использовать помощник <code>trim_messages</code>, чтобы уменьшить количество сообщений, которые мы отправляем модели. Триммер позволяет нам указать, сколько токенов мы хотим сохранить, а также другие параметры, например, всегда ли сохранять системное сообщение и разрешать ли частичные сообщения:</p>
+
+    <pre><code>from langchain_core.messages import SystemMessage, trim_messages
+
+trimmer = trim_messages(
+    max_tokens=65,
+    strategy="last",
+    token_counter=model,
+    include_system=True,
+    allow_partial=False,
+    start_on="human",
+)
+
+messages = [
+    SystemMessage(content="you're a good assistant"),
+    HumanMessage(content="hi! I'm bob"),
+    AIMessage(content="hi!"),
+    HumanMessage(content="I like vanilla ice cream"),
+    AIMessage(content="nice"),
+    HumanMessage(content="whats 2 + 2"),
+    AIMessage(content="4"),
+    HumanMessage(content="thanks"),
+    AIMessage(content="no problem!"),
+    HumanMessage(content="having fun?"),
+    AIMessage(content="yes!"),
+]
+
+trimmer.invoke(messages)</code></pre>
+
+    <pre><code>[SystemMessage(content="you're a good assistant", additional_kwargs={}, response_metadata={}),
+ HumanMessage(content='whats 2 + 2', additional_kwargs={}, response_metadata={}),
+ AIMessage(content='4', additional_kwargs={}, response_metadata={}),
+ HumanMessage(content='thanks', additional_kwargs={}, response_metadata={}),
+ AIMessage(content='no problem!', additional_kwargs={}, response_metadata={}),
+ HumanMessage(content='having fun?', additional_kwargs={}, response_metadata={}),
+ AIMessage(content='yes!', additional_kwargs={}, response_metadata={})]</code></pre>
+
+    <p>Чтобы использовать его в нашей цепочке, нам просто нужно запустить триммер перед передачей входных данных <code>messages</code> нашему промпту.</p>
+
+    <pre><code>workflow = StateGraph(state_schema=State)
+
+def call_model(state: State):
+    print(f"Messages before trimming: {len(state['messages'])}")
+    trimmed_messages = trimmer.invoke(state["messages"])
+    print(f"Messages after trimming: {len(trimmed_messages)}")
+    print("Remaining messages:")
+    for msg in trimmed_messages:
+        print(f"  {type(msg).__name__}: {msg.content}")
+    prompt = prompt_template.invoke(
+        {"messages": trimmed_messages, "language": state["language"]}
+    )
+    response = model.invoke(prompt)
+    return {"messages": [response]}
+
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+
+memory = MemorySaver()
+app = workflow.compile(checkpointer=memory)</code></pre>
+
+    <p>Теперь, если мы попросим модель назвать наше имя, она его не узнает, поскольку мы обрезали эту часть истории чата. (Определив нашу стратегию обрезки как <code>'last'</code>, мы сохраняем только самые последние сообщения, которые помещаются в <code>max_tokens</code>.)</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc567"}}
+query = "What is my name?"
+language = "English"
+
+input_messages = messages + [HumanMessage(query)]
+output = app.invoke(
+    {"messages": input_messages, "language": language},
+    config,
+)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>Messages before trimming: 12
+Messages after trimming: 8
+Remaining messages:
+  SystemMessage: you're a good assistant
+  HumanMessage: whats 2 + 2
+  AIMessage: 4
+  HumanMessage: thanks
+  AIMessage: no problem!
+  HumanMessage: having fun?
+  AIMessage: yes!
+  HumanMessage: What is my name?
+==================================[1m Ai Message [0m==================================
+
+I don't know your name. If you'd like to share it, feel free!</code></pre>
+
+    <p>Но если мы спросим о информации, которая содержится в последних нескольких сообщениях, она помнит:</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc678"}}
+
+query = "What math problem was asked?"
+language = "English"
+
+input_messages = messages + [HumanMessage(query)]
+output = app.invoke(
+    {"messages": input_messages, "language": language},
+    config,
+)
+output["messages"][-1].pretty_print()</code></pre>
+
+    <pre><code>Messages before trimming: 12
+Messages after trimming: 8
+Remaining messages:
+  SystemMessage: you're a good assistant
+  HumanMessage: whats 2 + 2
+  AIMessage: 4
+  HumanMessage: thanks
+  AIMessage: no problem!
+  HumanMessage: having fun?
+  AIMessage: yes!
+  HumanMessage: What math problem was asked?
+==================================[1m Ai Message [0m==================================
+
+The math problem that was asked was "what's 2 + 2."</code></pre>
+
+    <p>Если вы посмотрите на LangSmith, вы сможете точно увидеть, что происходит под капотом, в <a href="#">трассировке LangSmith</a>.</p>
+
+    <h2 id="streaming">Потоковая передача</h2>
+    <p>Теперь у нас есть функционирующий чат-бот. Однако одно <em>действительно</em> важное соображение UX для приложений чат-ботов — это потоковая передача. LLM иногда могут отвечать довольно долго, и поэтому, чтобы улучшить пользовательский опыт, большинство приложений передают каждый токен по мере его генерации. Это позволяет пользователю видеть прогресс.</p>
+    <p>На самом деле это супер легко сделать!</p>
+    <p>По умолчанию <code>.stream</code> в нашем приложении LangGraph передает шаги приложения — в данном случае один шаг ответа модели. Установка <code>stream_mode="messages"</code> позволяет нам передавать выходные токены вместо этого:</p>
+
+    <pre><code>config = {"configurable": {"thread_id": "abc789"}}
+query = "Hi I'm Todd, please tell me a joke."
+language = "English"
+
+input_messages = [HumanMessage(query)]
+for chunk, metadata in app.stream(
+    {"messages": input_messages, "language": language},
+    config,
+    stream_mode="messages",
+):
+    if isinstance(chunk, AIMessage):  # Filter to just model responses
+        print(chunk.content, end="|")</code></pre>
+
+    <pre><code>|Hi| Todd|!| Here|’s| a| joke| for| you|:
+|Why| don't| scientists| trust| atoms|?
+|Because| they| make| up| everything|!||</code></pre>
+
+    <h2 id="next">Следующие шаги</h2>
+    <p>Теперь, когда вы понимаете основы создания чат-бота в LangChain, вас могут заинтересовать некоторые более продвинутые учебные пособия:</p>
+    <ul>
+      <li><strong>Conversational RAG</strong>: Обеспечьте чат-боту взаимодействие с внешним источником данных</li>
+      <li><strong>Agents</strong>: Создайте чат-бота, который может выполнять действия</li>
+    </ul>
+    <p>Если вы хотите глубже погрузиться в детали, стоит ознакомиться со следующим:</p>
+    <ul>
+      <li><strong>Streaming</strong>: потоковая передача <em>критически важна</em> для чат-приложений</li>
+      <li><strong>How to add message history</strong>: для более глубокого погружения во все, что связано с историей сообщений</li>
+      <li><strong>How to manage large message history</strong>: дополнительные методы управления большой историей чата</li>
+      <li><strong>LangGraph main docs</strong>: для получения более подробной информации о создании с помощью LangGraph</li>
+    </ul>
+
+    <div class="footer">
+      <p>© 2024 LangChain Tutorial. Все права защищены.</p>
+    </div>
+  </div>
+</body>
+</html>
