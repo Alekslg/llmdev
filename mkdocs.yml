@@ -1,0 +1,38 @@
+site_name: LangChain Russian Docs
+site_url: https://llmdev.ru/
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.instant
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - awesome-pages
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      type: date
+      enable_creation_date: false
+
+extra:
+  social:
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/Aleks3ds
