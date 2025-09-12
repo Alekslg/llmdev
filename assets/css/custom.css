@@ -1,0 +1,37 @@
+/* ===============================
+   📖 Book Mode (читалка)
+   =============================== */
+[data-md-color-scheme="book"] {
+  --md-text-font-size: 18px;
+  --md-code-font-size: 16px;
+  --md-typeset-line-height: 1.7;
+}
+
+/* убираем боковые панели */
+[data-md-color-scheme="book"] .md-sidebar--primary,
+[data-md-color-scheme="book"] .md-sidebar--secondary {
+  display: none !important;
+}
+
+/* ограничиваем ширину текста */
+[data-md-color-scheme="book"] .md-main__inner {
+  max-width: 700px;
+  margin: auto;
+  padding: 1em;
+}
+
+/* делаем заголовки чуть больше */
+[data-md-color-scheme="book"] h1,
+[data-md-color-scheme="book"] h2,
+[data-md-color-scheme="book"] h3 {
+  line-height: 1.4;
+}
+
+/* ===============================
+   📑 Docs Mode (документация)
+   =============================== */
+
+/* убираем верхние вкладки */
+[data-md-color-scheme="default"] .md-tabs {
+  display: none !important;
+}
