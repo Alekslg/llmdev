@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function updateFooter() {
   const copyrightDiv = document.querySelector(".md-copyright");
   if (copyrightDiv) {
     copyrightDiv.innerHTML = `
@@ -6,4 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Пишу, чтобы запомнить. Делюсь, чтобы помочь.
         `;
   }
-});
+}
+
+document.addEventListener("DOMContentLoaded", updateFooter);
+document.addEventListener("mkdocs:page-loaded", updateFooter);
