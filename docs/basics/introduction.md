@@ -17,7 +17,7 @@ LangChain упрощает каждый этап жизненного цикла
 - **Подготовка к продакшену (Productionization)**: Используйте LangSmith для инспектирования, мониторинга и оценки ваших приложений, чтобы вы могли постоянно оптимизировать их и уверенно разворачивать.
 - **Развертывание (Deployment)**: Превращайте ваши приложения LangGraph в production-ready API и ассистенты с помощью LangGraph Platform.
 
-![LangChain Framework Overview Diagram outlining the hierarchical organization of the LangChain framework, displaying the interconnected parts across multiple layers.](../assets/getting-started/langchain_stack_112024_dark.svg)
+![LangChain Framework Overview Diagram outlining the hierarchical organization of the LangChain framework, displaying the interconnected parts across multiple layers.](../assets/images/basics/introduction/getting-started/langchain_stack_112024_dark.svg)
 
 LangChain реализует стандартный интерфейс для large language models и связанных технологий, таких как embedding models и vector stores, и интегрируется с сотнями провайдеров. Подробнее см. на странице [integrations](https://python.langchain.com/docs/integrations/).
 

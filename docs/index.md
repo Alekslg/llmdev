@@ -1,4 +1,4 @@
-# 🇷🇺 LangChain Docs на русском
+# 🇷🇺 Перевод документации LangChain
 
 Добро пожаловать в **перевод официальной документации LangChain**.
 Проект создан для сообщества разработчиков, изучающих LangChain на Python.
@@ -11,13 +11,15 @@
 
 ## 📚 Основные разделы
 
-=== "Basics" - [Введение](basics/introduction.md) - [Быстрый старт](basics/quickstart.md)
+=== "Основы" - [Введение](basics/introduction.md)
 
-=== "Concepts" - [Chat Models](concepts/chat-models.md) - [Tokens](concepts/tokens.md) - [Structured Outputs](concepts/structured_outputs.md) - [Tool Calling](concepts/tool_calling.md) - [Multimodality](concepts/multimodality.md)
+=== "Обучение" - [Простое приложение LLM](tutorials/llm-chain.md)
 
-=== "How-to Guides" - [Работа с памятью](how-to/memory.md) - [Использование Tools](how-to/tools.md)
+=== "Концепции" - [Чат-модели](concepts/chat-models.md)
 
-=== "Modules" - [LLMs](modules/llms.md) - [Agents](modules/agents.md)
+<!-- === "Руководства" - [Работа с памятью](how-to/memory.md) - [Использование Tools](how-to/tools.md) -->
+
+<!-- === "Модули" - [LLMs](modules/llms.md) - [Agents](modules/agents.md) -->
 
 ---
 

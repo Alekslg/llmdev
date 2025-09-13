@@ -12,6 +12,21 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.code.annotate
+
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/file-document-outline   # 📑
+        name: Switch to Book Mode
+    - scheme: book
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/book-open-page-variant # 📖
+        name: Switch to Docs Mode
 
 markdown_extensions:
   - admonition
@@ -36,3 +51,10 @@ extra:
   social:
     - icon: fontawesome/brands/telegram
       link: https://t.me/Aleks3ds
+
+extra_css:
+  - assets/css/custom.css
+extra_javascript:
+  - assets/js/scheme-toggle.js
+extra_files:
+  - CNAME
