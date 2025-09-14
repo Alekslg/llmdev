@@ -10,13 +10,13 @@
         <meta name="author" content="Перевод GPT">
       
       
-        <link rel="canonical" href="https://llmdev.ru/basics/introduction/">
+        <link rel="canonical" href="https://llmdev.ru/Integrations/openai/">
       
       
-        <link rel="prev" href="../../Integrations/openai/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../concepts/chat-models/">
+        <link rel="next" href="../../basics/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Introduction - LangChain Russian Docs</title>
+        <title>OpenAI - LangChain Russian Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#openai" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              OpenAI
             
           </span>
         </div>
@@ -255,20 +255,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -284,80 +284,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Интеграции
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Integrations/openai/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    OpenAI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Основы
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Основы
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -382,7 +312,7 @@
   
   
   <span class="md-ellipsis">
-    Введение
+    OpenAI
     
   </span>
   
@@ -395,7 +325,7 @@
   
   
   <span class="md-ellipsis">
-    Введение
+    OpenAI
     
   </span>
   
@@ -418,146 +348,107 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Установка и настройка
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat модель
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель эмбедингов (Embedding Model)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Загрузчик документов (Document Loader)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retriever" class="md-nav__link">
+    <span class="md-ellipsis">
+      Извлекатель (Retriever)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Инструменты (Tools)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Инструменты (Tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dall-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Генератор изображений Dall-E
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Адаптер (Adapter)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Архитектура
+      Токенизатор
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#chain" class="md-nav__link">
     <span class="md-ellipsis">
-      Руководства
+      Цепочка (Chain)
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Руководства">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tutorials" class="md-nav__link">
-    <span class="md-ellipsis">
-      Учебные пособия (Tutorials)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to" class="md-nav__link">
-    <span class="md-ellipsis">
-      How-to руководства
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Концептуальные руководства
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Интеграции
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      Справочник по API
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Экосистема
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Экосистема">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#langsmith" class="md-nav__link">
-    <span class="md-ellipsis">
-      ️ LangSmith
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#langgraph" class="md-nav__link">
-    <span class="md-ellipsis">
-      ️ LangGraph
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      Дополнительные ресурсы
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Дополнительные ресурсы">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      Версии
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      Безопасность
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      Вклад в проект
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -565,6 +456,76 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Основы
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Основы
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basics/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Введение
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -812,146 +773,107 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Установка и настройка
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat модель
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель эмбедингов (Embedding Model)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Загрузчик документов (Document Loader)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retriever" class="md-nav__link">
+    <span class="md-ellipsis">
+      Извлекатель (Retriever)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Инструменты (Tools)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Инструменты (Tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dall-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Генератор изображений Dall-E
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Адаптер (Adapter)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Архитектура
+      Токенизатор
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#chain" class="md-nav__link">
     <span class="md-ellipsis">
-      Руководства
+      Цепочка (Chain)
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Руководства">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tutorials" class="md-nav__link">
-    <span class="md-ellipsis">
-      Учебные пособия (Tutorials)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to" class="md-nav__link">
-    <span class="md-ellipsis">
-      How-to руководства
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Концептуальные руководства
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Интеграции
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      Справочник по API
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Экосистема
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Экосистема">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#langsmith" class="md-nav__link">
-    <span class="md-ellipsis">
-      ️ LangSmith
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#langgraph" class="md-nav__link">
-    <span class="md-ellipsis">
-      ️ LangGraph
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      Дополнительные ресурсы
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Дополнительные ресурсы">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      Версии
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      Безопасность
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      Вклад в проект
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -971,68 +893,81 @@
 
 
 
-<h1 id="_1">Введение<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p><strong>LangChain</strong> — это фреймворк для разработки приложений, работающих на основе large language models (LLMs).</p>
-<p>LangChain упрощает каждый этап жизненного цикла приложения на базе LLM:</p>
-<ul>
-<li><strong>Разработка (Development)</strong>: Создавайте свои приложения с помощью open-source компонентов LangChain и интеграций со сторонними сервисами. Используйте LangGraph для построения stateful-агентов с нативной поддержкой streaming и human-in-the-loop.</li>
-<li><strong>Подготовка к продакшену (Productionization)</strong>: Используйте LangSmith для инспектирования, мониторинга и оценки ваших приложений, чтобы вы могли постоянно оптимизировать их и уверенно разворачивать.</li>
-<li><strong>Развертывание (Deployment)</strong>: Превращайте ваши приложения LangGraph в production-ready API и ассистенты с помощью LangGraph Platform.</li>
-</ul>
-<p><img alt="LangChain Framework Overview Diagram outlining the hierarchical organization of the LangChain framework, displaying the interconnected parts across multiple layers." src="../../assets/images/basics/introduction/getting-started/langchain_stack_112024_dark.svg" /></p>
-<p>LangChain реализует стандартный интерфейс для large language models и связанных технологий, таких как embedding models и vector stores, и интегрируется с сотнями провайдеров. Подробнее см. на странице <a href="https://python.langchain.com/docs/integrations/providers/">integrations</a>.</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-qU<span class="w"> </span><span class="s2">&quot;langchain[google-genai]&quot;</span>
+<h1 id="openai">OpenAI<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h1>
+<p>Вся функциональность, связанная с OpenAI</p>
+<blockquote>
+<p><strong>OpenAI</strong> — американская лаборатория исследований в области искусственного интеллекта, состоящая из некоммерческой организации OpenAI Incorporated и её коммерческого подразделения OpenAI Limited Partnership. OpenAI проводит исследования в области ИИ с декларированной целью продвижения и разработки дружелюбного ИИ. Системы OpenAI работают на платформе суперкомпьютеров Azure от Microsoft.
+API <strong>OpenAI</strong> (OpenAI API) работает на множестве моделей с различными возможностями и ценами.
+<strong>ChatGPT</strong> — чат-бот на базе ИИ, разработанный OpenAI.</p>
+</blockquote>
+<hr />
+<h2 id="_1">Установка и настройка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Установите пакет интеграции:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain-openai
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GOOGLE_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Enter API key for Google Gemini: &quot;</span><span class="p">)</span>
+<p>Получите API-ключ OpenAI и установите его как переменную окружения (<code>OPENAI_API_KEY</code>) (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<hr />
+<h2 id="chat">Chat модель<a class="headerlink" href="#chat" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_chat_model</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span><span class="s2">&quot;gemini-2.5-flash&quot;</span><span class="p">,</span> <span class="n">model_provider</span><span class="o">=</span><span class="s2">&quot;google_genai&quot;</span><span class="p">)</span>
+<p>Если вы используете модель, размещённую на Azure, следует использовать другой обёртку:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureChatOpenAI</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<p>Для подробного объяснения использования обёртки <code>Azure</code> см. <a href="https://python.langchain.com/docs/integrations/providers/openai/#azure">here</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<hr />
+<h2 id="llm">LLM<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 </code></pre></div>
-<p>Эта документация фокусируется на Python-библиотеке LangChain. Перейдите сюда для документации по JavaScript-библиотеке LangChain.</p>
-<h2 id="_2">Архитектура<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Фреймворк LangChain состоит из нескольких open-source библиотек. Подробнее читайте на странице <a href="https://python.langchain.com/docs/architecture/">Architecture</a>.</p>
-<ul>
-<li><code>langchain-core</code></li>
-<li><strong>Пакеты интеграций</strong> (например, <code>langchain-openai</code>, <code>langchain-anthropic</code> и т.д.): Ключевые интеграции были выделены в легковесные пакеты, которые совместно поддерживаются командой LangChain и разработчиками интеграций.</li>
-<li><code>langchain</code></li>
-<li><code>langchain-community</code></li>
-<li><code>langgraph</code></li>
-</ul>
-<h2 id="_3">Руководства<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="tutorials">Учебные пособия (Tutorials)<a class="headerlink" href="#tutorials" title="Permanent link">&para;</a></h3>
-<p>Если вы хотите создать что-то конкретное или предпочитаете обучаться на практике, ознакомьтесь с нашим разделом <a href="https://python.langchain.com/docs/tutorials/">tutorials</a>. Это лучшее место для начала.</p>
-<p>Вот лучшие руководства, с которых стоит начать:</p>
-<p>Ознакомьтесь со <a href="https://python.langchain.com/docs/tutorials/">всем списком учебных пособий LangChain здесь</a>, а также с другими <a href="https://python.langchain.com/docs/tutorials/">учебниками по LangGraph здесь</a>. Чтобы глубже изучить LangGraph, пройдите наш первый курс LangChain Academy, <em>Introduction to LangGraph</em>, доступный <a href="https://learn.langchain.com/courses/introduction-to-langgraph">здесь</a>.</p>
-<h3 id="how-to">How-to руководства<a class="headerlink" href="#how-to" title="Permanent link">&para;</a></h3>
-<p>Здесь вы найдете краткие ответы на вопросы типа «Как мне…?». Эти how-to руководства не охватывают темы глубоко — такую информацию вы найдете в разделах Tutorials и API Reference. Однако эти руководства помогут вам быстро выполнить распространенные задачи с использованием chat models, vector stores и других общих компонентов LangChain.</p>
-<p>Ознакомьтесь с <a href="https://python.langchain.com/docs/how_to/">how-to, специфичными для LangGraph, здесь</a>.</p>
-<h3 id="_4">Концептуальные руководства<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>Знакомство со всеми ключевыми частями LangChain, которые вам необходимо знать! Здесь вы найдете высокоуровневые объяснения всех концепций LangChain.</p>
-<p>Для более глубокого погружения в концепции LangGraph ознакомьтесь с <a href="https://python.langchain.com/docs/concepts/langgraph/">этой страницей</a>.</p>
-<h3 id="_5">Интеграции<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>LangChain является частью богатой экосистемы инструментов, которые интегрируются с нашим фреймворком и строятся поверх него. Если вы хотите быстро начать работу с chat models, vector stores или другими компонентами LangChain от конкретного провайдера, ознакомьтесь с нашим растущим списком <a href="https://python.langchain.com/docs/integrations/">integrations</a>.</p>
-<h3 id="api">Справочник по API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
-<p>Перейдите в раздел <a href="https://api.python.langchain.com/">reference</a>, чтобы ознакомиться с полной документацией по всем классам и методам в Python-пакетах LangChain.</p>
-<h2 id="_6">Экосистема<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="langsmith">️ LangSmith<a class="headerlink" href="#langsmith" title="Permanent link">&para;</a></h3>
-<p>Трассировка и оценка ваших приложений на основе языковых моделей и интеллектуальных агентов, чтобы помочь вам перейти от прототипа к продакшену.</p>
-<h3 id="langgraph">️ LangGraph<a class="headerlink" href="#langgraph" title="Permanent link">&para;</a></h3>
-<p>Создание stateful, multi-actor приложений с LLM. Плавно интегрируется с LangChain, но может использоваться и без него. LangGraph обеспечивает работу production-grade агентов, которым доверяют LinkedIn, Uber, Klarna, GitLab и многие другие.</p>
-<h2 id="_7">Дополнительные ресурсы<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="_8">Версии<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>Узнайте, что изменилось в v0.3, как перенести legacy-код, ознакомьтесь с нашей политикой версионирования и многое другое.</p>
-<h3 id="_9">Безопасность<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>Ознакомьтесь с лучшими практиками безопасности, чтобы убедиться, что вы безопасно разрабатываете с использованием LangChain.</p>
-<h3 id="_10">Вклад в проект<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<p>Ознакомьтесь с <a href="https://python.langchain.com/docs/contributing/">руководством для разработчиков</a> с инструкциями по внесению вклада и настройке вашей среды разработки.</p>
-<p>Source: https://python.langchain.com/docs/introduction/</p>
+<p>Если модель размещена на <code>Azure</code>, используйте:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAI</span>
+</code></pre></div>
+<p>Для детального руководства по обёртке <code>Azure</code> см. <a href="https://python.langchain.com/docs/integrations/providers/openai/#azure">here</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<hr />
+<h2 id="embedding-model">Модель эмбедингов (Embedding Model)<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</code></pre></div>
+<hr />
+<h2 id="document-loader">Загрузчик документов (Document Loader)<a class="headerlink" href="#document-loader" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders.chatgpt</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTLoader</span>
+</code></pre></div>
+<hr />
+<h2 id="retriever">Извлекатель (Retriever)<a class="headerlink" href="#retriever" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTPluginRetriever</span>
+</code></pre></div>
+<hr />
+<h2 id="tools">Инструменты (Tools)<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<h3 id="dall-e">Генератор изображений Dall-E<a class="headerlink" href="#dall-e" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>OpenAI Dall-E</strong> — модели text-to-image, разработанные OpenAI с использованием методов глубокого обучения, для генерации цифровых изображений по описанию на естественном языке, называемым «prompt». (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+</blockquote>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.utilities.dalle_image_generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">DallEAPIWrapper</span>
+</code></pre></div>
+<hr />
+<h2 id="adapter">Адаптер (Adapter)<a class="headerlink" href="#adapter" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">openai</span> <span class="k">as</span> <span class="n">lc_openai</span>
+</code></pre></div>
+<hr />
+<h2 id="_2">Токенизатор<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Есть несколько мест, где можно использовать токенизатор <code>tiktoken</code>. По умолчанию он используется для подсчёта токенов для OpenAI LLMs. (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<p>Вы можете также использовать его для подсчёта токенов при разбиении документов:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="n">CharacterTextSplitter</span><span class="o">.</span><span class="n">from_tiktoken_encoder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<p>Для более детального примера смотрите <a href="https://python.langchain.com/docs/integrations/providers/openai/#notebook">this notebook</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<hr />
+<h2 id="chain">Цепочка (Chain)<a class="headerlink" href="#chain" title="Permanent link">&para;</a></h2>
+<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIModerationChain</span>
+</code></pre></div>
+<hr />
+<p>Source: <a href="https://python.langchain.com/docs/integrations/providers/openai/">https://python.langchain.com/docs/integrations/providers/openai/</a></p>
 
 
 
@@ -1053,7 +988,7 @@
     <span class="md-icon" title="Последнее обновление">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="13 сентября 2025 г. 21:02:22 UTC">13 сентября 2025 г.</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="14 сентября 2025 г. 12:15:54 UTC">14 сентября 2025 г.</span>
   </span>
 
     
@@ -1089,7 +1024,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
         
           
-          <a href="../../Integrations/openai/" class="md-footer__link md-footer__link--prev" aria-label="Назад: OpenAI">
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Назад: Главная">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1099,20 +1034,20 @@
                 Назад
               </span>
               <div class="md-ellipsis">
-                OpenAI
+                Главная
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../concepts/chat-models/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Чат-модели">
+          <a href="../../basics/introduction/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Введение">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Вперед
               </span>
               <div class="md-ellipsis">
-                Чат-модели
+                Введение
               </div>
             </div>
             <div class="md-footer__button md-icon">
