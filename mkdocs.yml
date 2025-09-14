@@ -30,6 +30,11 @@ theme:
         icon: material/book-open-page-variant # 📖
         name: Switch to Docs Mode
 
+nav:
+  - Главная: index.md
+  - ...
+  - 🐍 Pomodoro ⏳: pomodoro.html
+
 markdown_extensions:
   - admonition
   - pymdownx.details
