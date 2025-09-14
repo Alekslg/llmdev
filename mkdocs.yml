@@ -4,6 +4,8 @@ site_url: https://llmdev.ru/
 theme:
   name: material
   language: ru
+  favicon: assets/images/favicon.ico
+  logo: assets/images/logo.png
   features:
     - navigation.instant
     - navigation.expand
@@ -19,7 +21,7 @@ theme:
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/file-document-outline   # 📑
+        icon: material/file-document-outline # 📑
         name: Switch to Book Mode
     - scheme: book
       primary: teal
@@ -56,5 +58,6 @@ extra_css:
   - assets/css/custom.css
 extra_javascript:
   - assets/js/scheme-toggle.js
+  - assets/js/custom-footer.js
 extra_files:
   - CNAME
