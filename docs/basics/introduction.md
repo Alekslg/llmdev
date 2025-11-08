@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Введение"
 topic: "Getting Started"
 filename: "introduction.md"
 source: "https://python.langchain.com/docs/introduction/"

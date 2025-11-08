@@ -1,5 +1,5 @@
 ---
-title: "Build a Chatbot"
+title: "Создайте чат-бота"
 topic: "tutorials"
 filename: "chatbot"
 source: "https://python.langchain.com/docs/tutorials/chatbot/"

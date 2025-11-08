@@ -1,5 +1,5 @@
 ---
-title: "Build an Agent"
+title: "Создайте агента"
 topic: "tutorials"
 filename: "agents"
 source: "https://python.langchain.com/docs/tutorials/agents/"

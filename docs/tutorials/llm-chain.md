@@ -1,5 +1,5 @@
 ---
-title: "Build a simple LLM application with chat models and prompt templates"
+title: "Создайте простое приложение LLM с чат-моделями и шаблонами промптов"
 topic: "tutorials"
 filename: "llm-chain"
 source: "https://python.langchain.com/docs/tutorials/llm_chain/"

@@ -1,6 +1,6 @@
 ---
 title: "OpenAI"
-topic: "Integrations"
+topic: "integrations"
 filename: "openai.md"
 source: "https://python.langchain.com/docs/integrations/providers/openai/"
 author: "Перевод GPT"

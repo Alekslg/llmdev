@@ -1,5 +1,0 @@
-title: Обучение
-nav:
-  - Простое приложение LLM: llm-chain.md
-  - Создайте чат-бота: chatbot.md
-  - Создайте агента: agents.md

@@ -1,5 +1,5 @@
 ---
-title: "Chat models"
+title: "Чат-модели"
 topic: "Concepts"
 filename: "chat-models.md"
 source: "https://python.langchain.com/docs/concepts/chat_models"
