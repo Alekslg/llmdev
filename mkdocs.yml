@@ -4,6 +4,9 @@ site_url: https://llmdev.ru/
 theme:
   name: material
   language: ru
+  font:
+    text: Roboto
+    code: Roboto Mono
   favicon: assets/images/favicon.ico
   logo: assets/images/logo.png
   features:
@@ -19,15 +22,15 @@ theme:
 nav:
   - Главная: index.md
   - Основы:
-    - basics/introduction.md
+      - basics/introduction.md
   - Концепции:
-    - concepts/chat-models.md
+      - concepts/chat-models.md
   - Практические курсы:
-    - tutorials/llm-chain.md
-    - tutorials/chatbot.md
-    - tutorials/agents.md
+      - tutorials/llm-chain.md
+      - tutorials/chatbot.md
+      - tutorials/agents.md
   - Интеграции:
-    - integrations/openai.md
+      - integrations/openai.md
   - 🐍 Pomodoro ⏳: pomodoro.html
 
 markdown_extensions:
@@ -42,6 +45,7 @@ markdown_extensions:
       permalink: true
 
 plugins:
+  - offline
   - search
   - git-revision-date-localized:
       fallback_to_build_date: true
