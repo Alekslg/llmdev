@@ -10,13 +10,13 @@
         <meta name="author" content="Перевод GPT">
       
       
-        <link rel="canonical" href="https://llmdev.ru/integrations/openai.html">
+        <link rel="canonical" href="https://llmdev.ru/modules/text-splitters.html">
       
       
-        <link rel="prev" href="../tutorials/agents.html">
+        <link rel="prev" href="qdrant.html">
       
       
-        <link rel="next" href="../modules/text-embedding.html">
+        <link rel="next" href="splitting-code.html">
       
       
       <link rel="icon" href="../assets/images/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>OpenAI - LangChain Russian Docs</title>
+        <title>Text splitters - LangChain Russian Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openai" class="md-skip">
+        <a href="#text-splitters" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OpenAI
+              Text splitters
             
           </span>
         </div>
@@ -515,6 +515,121 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/openai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OpenAI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="text-embedding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="llamacpp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Llama.cpp
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chroma.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chroma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="qdrant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -532,7 +647,7 @@
   
   
   <span class="md-ellipsis">
-    OpenAI
+    Text splitters
     
   </span>
   
@@ -540,12 +655,12 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="openai.html" class="md-nav__link md-nav__link--active">
+      <a href="text-splitters.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    OpenAI
+    Text splitters
     
   </span>
   
@@ -570,85 +685,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Установка и настройка
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chat модель
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#llm" class="md-nav__link">
-    <span class="md-ellipsis">
-      LLM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Модель эмбедингов (Embedding Model)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-loader" class="md-nav__link">
-    <span class="md-ellipsis">
-      Загрузчик документов (Document Loader)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#retriever" class="md-nav__link">
-    <span class="md-ellipsis">
-      Извлекатель (Retriever)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Инструменты (Tools)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Инструменты (Tools)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dall-e" class="md-nav__link">
-    <span class="md-ellipsis">
-      Генератор изображений Dall-E
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Адаптер (Adapter)
+      На основе структуры текста
     </span>
   </a>
   
@@ -657,16 +694,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Токенизатор
+      На основе длины
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chain" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Цепочка (Chain)
+      На основе структуры документа
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Специфичные для провайдера
     </span>
   </a>
   
@@ -688,122 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/text-embedding.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Embedding models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/llamacpp.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Llama.cpp
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/chroma.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Chroma
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/qdrant.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Qdrant
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/text-splitters.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Text splitters
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/splitting-code.html" class="md-nav__link">
+      <a href="splitting-code.html" class="md-nav__link">
         
   
   
@@ -877,85 +808,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Установка и настройка
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      Chat модель
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#llm" class="md-nav__link">
-    <span class="md-ellipsis">
-      LLM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Модель эмбедингов (Embedding Model)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-loader" class="md-nav__link">
-    <span class="md-ellipsis">
-      Загрузчик документов (Document Loader)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#retriever" class="md-nav__link">
-    <span class="md-ellipsis">
-      Извлекатель (Retriever)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Инструменты (Tools)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Инструменты (Tools)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dall-e" class="md-nav__link">
-    <span class="md-ellipsis">
-      Генератор изображений Dall-E
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Адаптер (Adapter)
+      На основе структуры текста
     </span>
   </a>
   
@@ -964,16 +817,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Токенизатор
+      На основе длины
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#chain" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Цепочка (Chain)
+      На основе структуры документа
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Специфичные для провайдера
     </span>
   </a>
   
@@ -995,81 +857,81 @@
 
 
 
-<h1 id="openai">OpenAI<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h1>
-<p>Вся функциональность, связанная с OpenAI</p>
-<blockquote>
-<p><strong>OpenAI</strong> — американская лаборатория исследований в области искусственного интеллекта, состоящая из некоммерческой организации OpenAI Incorporated и её коммерческого подразделения OpenAI Limited Partnership. OpenAI проводит исследования в области ИИ с декларированной целью продвижения и разработки дружелюбного ИИ. Системы OpenAI работают на платформе суперкомпьютеров Azure от Microsoft.
-API <strong>OpenAI</strong> (OpenAI API) работает на множестве моделей с различными возможностями и ценами.
-<strong>ChatGPT</strong> — чат-бот на базе ИИ, разработанный OpenAI.</p>
-</blockquote>
+<h1 id="text-splitters">Text splitters<a class="headerlink" href="#text-splitters" title="Permanent link">&para;</a></h1>
+<p><strong>Text splitters</strong> разбивают большие документы на более мелкие фрагменты, которые можно извлекать по отдельности и которые укладываются в ограничение контекстного окна модели.</p>
+<p>Существует несколько стратегий разбиения документов, каждая из которых имеет свои преимущества.</p>
+<p><Tip>
+  Для большинства случаев использования начните с <a href="/oss/python/integrations/splitters/recursive_text_splitter">RecursiveCharacterTextSplitter</a>. Он обеспечивает хорошее соотношение между сохранением контекста и управлением размером фрагмента. Эта стратегия по умолчанию хорошо работает «из коробки», и вы должны рассматривать её изменение только в том случае, если вам нужно точно настроить производительность для вашего конкретного приложения.
+</Tip></p>
+<h2 id="_1">На основе структуры текста<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Текст естественным образом организован в иерархические единицы, такие как абзацы, предложения и слова. Мы можем использовать эту врождённую структуру для определения стратегии разбиения, создавая фрагменты, которые сохраняют естественный языковой поток, семантическую целостность внутри фрагмента и адаптируются к различным уровням детализации текста. <code>RecursiveCharacterTextSplitter</code> из LangChain реализует эту концепцию:</p>
+<ul>
+<li><a href="/oss/python/integrations/splitters/recursive_text_splitter">RecursiveCharacterTextSplitter</a> пытается сохранить более крупные единицы (например, абзацы) нетронутыми.</li>
+<li>Если единица превышает размер фрагмента, он переходит на следующий уровень (например, предложения).</li>
+<li>Этот процесс продолжается вплоть до уровня слов, если это необходимо.</li>
+</ul>
+<p>Пример использования:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Доступные text splitters</strong>:</p>
+<ul>
+<li><a href="/oss/python/integrations/splitters/recursive_text_splitter">Recursively split text</a></li>
+</ul>
+<h2 id="_2">На основе длины<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Интуитивная стратегия — разбивать документы на основе их длины. Этот простой, но эффективный подход гарантирует, что каждый фрагмент не превышает заданного ограничения по размеру. Основные преимущества разбиения на основе длины:</p>
+<ul>
+<li>Простота реализации</li>
+<li>Последовательные размеры фрагментов</li>
+<li>Лёгкая адаптация под требования различных моделей</li>
+</ul>
+<p>Типы разбиения на основе длины:</p>
+<ul>
+<li>На основе токенов: разбиение текста по количеству токенов, что полезно при работе с языковыми моделями.</li>
+<li>На основе символов: разбиение текста по количеству символов, что может быть более последовательным для разных типов текста.</li>
+</ul>
+<p>Пример реализации с использованием <code>CharacterTextSplitter</code> из LangChain с разбиением по токенам:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="o">.</span><span class="n">from_tiktoken_encoder</span><span class="p">(</span>
+    <span class="n">encoding_name</span><span class="o">=</span><span class="s2">&quot;cl100k_base&quot;</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Доступные text splitters</strong>:</p>
+<ul>
+<li><a href="/oss/python/integrations/splitters/split_by_token">Split by tokens</a></li>
+<li><a href="/oss/python/integrations/splitters/character_text_splitter">Split by characters</a></li>
+</ul>
+<h2 id="_3">На основе структуры документа<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Некоторые документы имеют встроенную структуру, например HTML-, Markdown- или JSON-файлы. В таких случаях выгодно разбивать документ в соответствии с его структурой, так как она часто естественным образом группирует семантически связанный текст. Основные преимущества разбиения на основе структуры:</p>
+<ul>
+<li>Сохранение логической организации документа</li>
+<li>Поддержание контекста внутри каждого фрагмента</li>
+<li>Может быть эффективнее для последующих задач, таких как поиск или суммаризация</li>
+</ul>
+<p>Примеры разбиения на основе структуры:</p>
+<ul>
+<li>Markdown: разбиение по заголовкам (например, <code>#</code>, <code>##</code>, <code>###</code>)</li>
+<li>HTML: разбиение по тегам</li>
+<li>JSON: разбиение по элементам объекта или массива</li>
+<li>Код: разбиение по функциям, классам или логическим блокам</li>
+</ul>
+<p><strong>Доступные text splitters</strong>:</p>
+<ul>
+<li><a href="/oss/python/integrations/splitters/markdown_header_metadata_splitter">Split Markdown</a></li>
+<li><a href="/oss/python/integrations/splitters/recursive_json_splitter">Split JSON</a></li>
+<li><a href="/oss/python/integrations/splitters/code_splitter">Split code</a></li>
+<li><a href="/oss/python/integrations/splitters/split_html">Split HTML</a></li>
+</ul>
+<h2 id="_4">Специфичные для провайдера<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><Columns cols={3}>
+  <Card title="WRITER" icon="link" href="/oss/python/integrations/splitters/writer" arrow="true" cta="View guide" />
+</Columns></p>
 <hr />
-<h2 id="_1">Установка и настройка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Установите пакет интеграции:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>langchain-openai
-</code></pre></div>
-<p>Получите API-ключ OpenAI и установите его как переменную окружения (<code>OPENAI_API_KEY</code>) (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<hr />
-<h2 id="chat">Chat модель<a class="headerlink" href="#chat" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
-</code></pre></div>
-<p>Если вы используете модель, размещённую на Azure, следует использовать другой обёртку:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureChatOpenAI</span>
-</code></pre></div>
-<p>Для подробного объяснения использования обёртки <code>Azure</code> см. <a href="https://python.langchain.com/docs/integrations/providers/openai/#azure">here</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<hr />
-<h2 id="llm">LLM<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
-</code></pre></div>
-<p>Если модель размещена на <code>Azure</code>, используйте:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAI</span>
-</code></pre></div>
-<p>Для детального руководства по обёртке <code>Azure</code> см. <a href="https://python.langchain.com/docs/integrations/providers/openai/#azure">here</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<hr />
-<h2 id="embedding-model">Модель эмбедингов (Embedding Model)<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
-</code></pre></div>
-<hr />
-<h2 id="document-loader">Загрузчик документов (Document Loader)<a class="headerlink" href="#document-loader" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders.chatgpt</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTLoader</span>
-</code></pre></div>
-<hr />
-<h2 id="retriever">Извлекатель (Retriever)<a class="headerlink" href="#retriever" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGPTPluginRetriever</span>
-</code></pre></div>
-<hr />
-<h2 id="tools">Инструменты (Tools)<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
-<h3 id="dall-e">Генератор изображений Dall-E<a class="headerlink" href="#dall-e" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p><strong>OpenAI Dall-E</strong> — модели text-to-image, разработанные OpenAI с использованием методов глубокого обучения, для генерации цифровых изображений по описанию на естественном языке, называемым «prompt». (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-</blockquote>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.utilities.dalle_image_generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">DallEAPIWrapper</span>
-</code></pre></div>
-<hr />
-<h2 id="adapter">Адаптер (Adapter)<a class="headerlink" href="#adapter" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">openai</span> <span class="k">as</span> <span class="n">lc_openai</span>
-</code></pre></div>
-<hr />
-<h2 id="_2">Токенизатор<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Есть несколько мест, где можно использовать токенизатор <code>tiktoken</code>. По умолчанию он используется для подсчёта токенов для OpenAI LLMs. (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<p>Вы можете также использовать его для подсчёта токенов при разбиении документов:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
-<span class="n">CharacterTextSplitter</span><span class="o">.</span><span class="n">from_tiktoken_encoder</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</code></pre></div>
-<p>Для более детального примера смотрите <a href="https://python.langchain.com/docs/integrations/providers/openai/#notebook">this notebook</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<hr />
-<h2 id="chain">Цепочка (Chain)<a class="headerlink" href="#chain" title="Permanent link">&para;</a></h2>
-<p>См. пример использования: <a href="https://python.langchain.com/docs/integrations/providers/openai/#usage-example">usage example</a> (<a href="https://python.langchain.com/docs/integrations/providers/openai/" title="OpenAI | ️ LangChain">python.langchain.com</a>)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIModerationChain</span>
-</code></pre></div>
-<hr />
-<p>Source: <a href="https://python.langchain.com/docs/integrations/providers/openai/">https://python.langchain.com/docs/integrations/providers/openai/</a></p>
+<p>Source: https://docs.langchain.com/oss/python/integrations/splitters</p>
 
 
 
@@ -1090,7 +952,7 @@ API <strong>OpenAI</strong> (OpenAI API) работает на множеств�
     <span class="md-icon" title="Последнее обновление">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="8 ноября 2025 г. 21:25:36 UTC">8 ноября 2025 г.</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="9 ноября 2025 г. 19:54:44 UTC">9 ноября 2025 г.</span>
   </span>
 
     
@@ -1126,7 +988,7 @@ API <strong>OpenAI</strong> (OpenAI API) работает на множеств�
       <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
         
           
-          <a href="../tutorials/agents.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Создайте агента">
+          <a href="qdrant.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Qdrant">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1136,20 +998,20 @@ API <strong>OpenAI</strong> (OpenAI API) работает на множеств�
                 Назад
               </span>
               <div class="md-ellipsis">
-                Создайте агента
+                Qdrant
               </div>
             </div>
           </a>
         
         
           
-          <a href="../modules/text-embedding.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Embedding models">
+          <a href="splitting-code.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Splitting code">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Вперед
               </span>
               <div class="md-ellipsis">
-                Embedding models
+                Splitting code
               </div>
             </div>
             <div class="md-footer__button md-icon">

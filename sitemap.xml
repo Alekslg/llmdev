@@ -17,6 +17,30 @@
          <lastmod>2025-11-09</lastmod>
     </url>
     <url>
+         <loc>https://llmdev.ru/modules/chroma.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/modules/llamacpp.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/modules/qdrant.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/modules/splitting-code.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/modules/text-embedding.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/modules/text-splitters.html</loc>
+         <lastmod>2025-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://llmdev.ru/tutorials/agents.html</loc>
          <lastmod>2025-11-09</lastmod>
     </url>
