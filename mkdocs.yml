@@ -31,6 +31,12 @@ nav:
       - tutorials/agents.md
   - Интеграции:
       - integrations/openai.md
+      - 'Embedding models': modules/text-embedding.md
+      - 'Llama.cpp': modules/llamacpp.md
+      - modules/chroma.md
+      - modules/qdrant.md
+      - modules/text-splitters.md
+      - modules/splitting-code.md
   - 🐍 Pomodoro ⏳: pomodoro.html
 
 markdown_extensions:
