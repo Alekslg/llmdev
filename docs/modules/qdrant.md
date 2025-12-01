@@ -51,8 +51,6 @@ Python-клиент позволяет запускать код в локаль
 <EmbeddingTabs />
 
 ```python
-# | output: false
-# | echo: false
 from langchain_openai import OpenAIEmbeddings
 
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")

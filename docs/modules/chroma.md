@@ -57,8 +57,6 @@ os.environ["LANGSMITH_TRACING"] = "true"
 <EmbeddingTabs />
 
 ```python
-# | output: false
-# | echo: false
 from langchain_openai import OpenAIEmbeddings
 
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
