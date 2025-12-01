@@ -7,16 +7,16 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <meta name="author" content="Перевод GPT">
+        <meta name="author" content="Перевод GPT-4.1">
       
       
-        <link rel="canonical" href="https://llmdev.ru/modules/text-embedding.html">
+        <link rel="canonical" href="https://llmdev.ru/modules/retrieval.html">
       
       
-        <link rel="prev" href="llamacpp.html">
+        <link rel="prev" href="splitting-code.html">
       
       
-        <link rel="next" href="chroma.html">
+        <link rel="next" href="../tutorials/llm-chain.html">
       
       
       <link rel="icon" href="../assets/images/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Embedding models - LangChain Russian Docs</title>
+        <title>Retrieval - LangChain Russian Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#retrieval" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Embedding models
+              Retrieval
             
           </span>
         </div>
@@ -422,30 +422,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Embedding models
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="text-embedding.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="text-embedding.html" class="md-nav__link">
         
   
   
@@ -456,84 +436,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Содержание">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Обзор
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Обзор">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Как это работает
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Метрики схожести
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      Интерфейс эмбеддингов в LangChain
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Популярные интеграции
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Кэширование
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -635,10 +537,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="retrieval.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="retrieval.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -649,6 +560,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -886,74 +798,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Обзор
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Обзор">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Как это работает
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Метрики схожести
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#langchain" class="md-nav__link">
-    <span class="md-ellipsis">
-      Интерфейс эмбеддингов в LangChain
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Популярные интеграции
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Кэширование
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -969,153 +815,185 @@
 
 
 
-  <h1>Embedding models</h1>
-
-<h2 id="_1">Обзор<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Это описание охватывает <strong>текстовые эмбеддинг-модели</strong>. LangChain в настоящее время не поддерживает мультимодальные эмбеддинги.</p>
-</blockquote>
-<p>Эмбеддинг-модели преобразуют необработанный текст — такой как предложение, абзац или твит — в вектор фиксированной длины, состоящий из чисел и отражающий его <strong>семантический смысл</strong>. Эти векторы позволяют машинам сравнивать и искать текст на основе смысла, а не точного совпадения слов.</p>
-<p>На практике это означает, что тексты с похожими идеями располагаются близко друг к другу в векторном пространстве. Например, вместо поиска только по фразе <em>«machine learning»</em>, эмбеддинги могут находить документы, обсуждающие связанные концепции, даже если используется другая формулировка.</p>
-<h3 id="_2">Как это работает<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h1 id="retrieval">Retrieval<a class="headerlink" href="#retrieval" title="Permanent link">&para;</a></h1>
+<p>Большинство современных LLM обладают двумя ключевыми ограничениями:</p>
+<ul>
+<li><strong>Ограниченный контекст</strong> — они не могут загружать целые корпуса данных за один раз.</li>
+<li><strong>Статичные знания</strong> — их обучающие данные зафиксированы на определённый момент времени.</li>
+</ul>
+<p><strong>Retrieval-Augmented Generation (RAG)</strong> — это подход, при котором ответы LLM дополняются контекстно-специфичной информацией.</p>
+<p>Retrieval позволяет LLM использовать внешние данные (документы, базы знаний, API и т. д.), оставаясь при этом генеративными системами. Вместо того чтобы заранее кодировать всё знание в параметры модели, Retrieval делает возможным:</p>
+<ul>
+<li>Обновляемое знание: добавление новых документов без переобучения модели.</li>
+<li>Персонализированные ответы: использование пользовательских данных или данных организации.</li>
+<li>Устойчивость: уменьшение галлюцинаций за счёт привязки ответов к источникам.</li>
+</ul>
+<h1 id="_1">Построение базы знаний<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><strong>Knowledge base</strong> — это хранилище документов или структурированных данных, используемых во время Retrieval. Если вам нужна кастомная knowledge base, вы можете использовать document loaders и vector stores из LangChain, чтобы построить её на основе ваших собственных данных.</p>
+<p>Смотрите следующий учебник, чтобы построить поисковую knowledge base и минимальный RAG‑workflow:</p>
+<ul>
+<li><a href="#tutorial-semantic-search">Tutorial: Semantic search</a></li>
+</ul>
+<p>Если у вас уже есть существующая knowledge base (например, SQL‑база данных, CRM или внутренняя система документации), вам <strong>не</strong> нужно её перестраивать. Вы можете:</p>
+<ul>
+<li>Подключить её как <strong>tool</strong> для агента в Agentic RAG.</li>
+<li>Делать к ней запросы и передавать полученный контент как контекст в LLM (2-Step RAG).</li>
+</ul>
+<h1 id="tutorial-semantic-search">Tutorial: Semantic search<a class="headerlink" href="#tutorial-semantic-search" title="Permanent link">&para;</a></h1>
+<p>В этом разделе вы узнаете, как создать поисковую knowledge base на основе ваших собственных данных с использованием document loaders, embeddings и vector stores из LangChain. В этом tutorial вы построите поисковый движок по PDF‑файлу, что позволит извлекать фрагменты, релевантные запросу. Затем вы реализуете минимальный RAG‑workflow поверх этого движка, чтобы увидеть, как внешние знания могут быть интегрированы в рассуждения LLM.</p>
+<h2 id="retrieval-rag">От Retrieval к RAG<a class="headerlink" href="#retrieval-rag" title="Permanent link">&para;</a></h2>
+<p>Retrieval позволяет LLM получать релевантный контекст во время выполнения запроса. Но большинство реальных приложений идут на шаг дальше: они <strong>интегрируют Retrieval с Generation</strong>, чтобы производить обоснованные, контекстно‑зависимые ответы. Это и есть основная идея <strong>Retrieval-Augmented Generation (RAG)</strong>. Retrieval‑pipeline становится фундаментом для более широкой системы, которая комбинирует поиск с генерацией.</p>
+<h2 id="retrieval-pipeline">Retrieval Pipeline<a class="headerlink" href="#retrieval-pipeline" title="Permanent link">&para;</a></h2>
+<p>Типичный Retrieval‑workflow выглядит так:</p>
 <ol>
-<li><strong>Векторизация</strong> — модель кодирует каждую входную строку как многомерный вектор.</li>
-<li><strong>Оценка схожести</strong> — векторы сравниваются с использованием математических метрик для измерения степени близости смыслов исходных текстов.</li>
+<li>Загрузка данных: использование document loaders для извлечения данных из внешних источников (файлы, базы данных, API и т. д.).</li>
+<li>Предобработка текста: разбиение документов на меньшие фрагменты с помощью text splitters.</li>
+<li>Кодирование: преобразование текстовых фрагментов в embeddings с помощью embedding models.</li>
+<li>Индексация: сохранение embeddings во vector store.</li>
+<li>Retrieval: по неструктурированному запросу пользователь получает релевантные документы через retriever.</li>
+<li>Построение ответа: LLM использует Retrieved документы как контекст для генерации ответа.</li>
 </ol>
-<h3 id="_3">Метрики схожести<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>Для сравнения эмбеддингов обычно используются следующие метрики:</p>
-<ul>
-<li><strong>Косинусное сходство</strong> (<em>Cosine similarity</em>) — измеряет угол между двумя векторами.</li>
-<li><strong>Евклидово расстояние</strong> (<em>Euclidean distance</em>) — измеряет прямолинейное расстояние между точками.</li>
-<li><strong>Скалярное произведение</strong> (<em>Dot product</em>) — измеряет, насколько один вектор проецируется на другой.</li>
-</ul>
-<p>Вот пример вычисления косинусного сходства между двумя векторами:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
-    <span class="n">dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">))</span>
-
-<span class="n">similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">document_embedding</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cosine Similarity:&quot;</span><span class="p">,</span> <span class="n">similarity</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="langchain">Интерфейс эмбеддингов в LangChain<a class="headerlink" href="#langchain" title="Permanent link">&para;</a></h2>
-<p>LangChain предоставляет стандартный интерфейс для текстовых эмбеддинг-моделей (например, OpenAI, Cohere, Hugging Face) через интерфейс <a href="https://reference.langchain.com/python/langchain_core/embeddings/#langchain_core.embeddings.embeddings.Embeddings">Embeddings</a>.</p>
-<p>Доступны два основных метода:</p>
-<ul>
-<li><code>embed_documents(texts: List[str]) → List[List[float]]</code>: создаёт эмбеддинги для списка документов.</li>
-<li><code>embed_query(text: str) → List[float]</code>: создаёт эмбеддинг для одного запроса.</li>
-</ul>
-<blockquote>
-<p>Интерфейс позволяет использовать разные стратегии для эмбеддингов запросов и документов, хотя большинство провайдеров на практике обрабатывают их одинаково.</p>
-</blockquote>
-<h2 id="_4">Популярные интеграции<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><img alt="Схема Retrieval pipeline" src="../assets/images/modules/retrieval/retrieval_pipeline.png" /></p>
+<p>Каждый компонент модульный: вы можете заменять loaders, splitters, embeddings или vector stores без переписывания логики приложения.</p>
+<h2 id="_2">Базовые блоки<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="document-loaders">Document loaders<a class="headerlink" href="#document-loaders" title="Permanent link">&para;</a></h3>
+<p>Document loaders загружают данные из внешних источников (Google Drive, Slack, Notion и т. д.), возвращая стандартизированные объекты <code>Document</code>.</p>
+<h3 id="text-splitters">Text splitters<a class="headerlink" href="#text-splitters" title="Permanent link">&para;</a></h3>
+<p>Text splitters разбивают крупные документы на меньшие фрагменты, которые затем могут извлекаться по отдельности и помещаться в context window модели.</p>
+<h3 id="embedding-models">Embedding models<a class="headerlink" href="#embedding-models" title="Permanent link">&para;</a></h3>
+<p>Embedding model преобразует текст в вектор чисел, чтобы тексты с похожим смыслом располагались близко друг к другу в этом vector space.</p>
+<h3 id="vector-stores">Vector stores<a class="headerlink" href="#vector-stores" title="Permanent link">&para;</a></h3>
+<p>Vector stores — это специализированные базы данных для хранения и поиска embeddings.</p>
+<h3 id="retrievers">Retrievers<a class="headerlink" href="#retrievers" title="Permanent link">&para;</a></h3>
+<p>Retriever — это интерфейс, который возвращает документы по неструктурированному запросу.</p>
+<h1 id="rag-architectures">RAG Architectures<a class="headerlink" href="#rag-architectures" title="Permanent link">&para;</a></h1>
+<p>RAG можно реализовать несколькими способами, в зависимости от потребностей вашей системы. Основные типы описаны в следующих разделах.</p>
 <table>
 <thead>
 <tr>
-<th>Provider</th>
-<th>Package</th>
+<th>Architecture</th>
+<th>Description</th>
+<th>Control</th>
+<th>Flexibility</th>
+<th>Latency</th>
+<th>Example Use Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="/oss/python/integrations/text_embedding/openai">OpenAI</a></td>
-<td><a href="https://python.langchain.com/api_reference/openai/chat_models/langchain_openai.chat_models.base.ChatOpenAI.html"><code>langchain-openai</code></a></td>
+<td>2-Step RAG</td>
+<td>Retrieval всегда происходит до Generation. Простой и предсказуемый подход.</td>
+<td>✅ High</td>
+<td>❌ Low</td>
+<td>⚡ Fast</td>
+<td>FAQs, документационные боты</td>
 </tr>
 <tr>
-<td><a href="/oss/python/integrations/text_embedding/azure_openai">OpenAI on Azure</a></td>
-<td><a href="https://python.langchain.com/api_reference/openai/embeddings/langchain_openai.embeddings.azure.AzureOpenAIEmbeddings.html"><code>langchain-openai</code></a></td>
+<td>Agentic RAG</td>
+<td>Агент на базе LLM решает, когда и как делать Retrieval в процессе рассуждения.</td>
+<td>❌ Low</td>
+<td>✅ High</td>
+<td>⏳ Variable</td>
+<td>Research‑ассистенты с доступом к множеству tools</td>
 </tr>
 <tr>
-<td><a href="/oss/python/integrations/text_embedding/google_generative_ai">Google Gemini</a></td>
-<td><a href="https://python.langchain.com/api_reference/google_genai/embeddings/langchain_google_genai.embeddings.GoogleGenerativeAIEmbeddings.html"><code>langchain-google-genai</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/ollama">Ollama</a></td>
-<td><a href="https://python.langchain.com/api_reference/ollama/embeddings/langchain_ollama.embeddings.OllamaEmbeddings.html"><code>langchain-ollama</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/together">Together</a></td>
-<td><a href="https://python.langchain.com/api_reference/together/embeddings/langchain_together.embeddings.TogetherEmbeddings.html"><code>langchain-together</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/fireworks">Fireworks</a></td>
-<td><a href="https://python.langchain.com/api_reference/fireworks/embeddings/langchain_fireworks.embeddings.FireworksEmbeddings.html"><code>langchain-fireworks</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/mistralai">MistralAI</a></td>
-<td><a href="https://python.langchain.com/api_reference/mistralai/embeddings/langchain_mistralai.embeddings.MistralAIEmbeddings.html"><code>langchain-mistralai</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/cohere">Cohere</a></td>
-<td><a href="https://python.langchain.com/api_reference/community/llms/langchain_community.llms.cohere.Cohere.html"><code>langchain-cohere</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/nomic">Nomic</a></td>
-<td><a href="https://python.langchain.com/api_reference/nomic/embeddings/langchain_nomic.embeddings.NomicEmbeddings.html"><code>langchain-nomic</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/fake">Fake</a></td>
-<td><a href="https://python.langchain.com/api_reference/core/embeddings/langchain_core.embeddings.fake.FakeEmbeddings.html"><code>langchain-core</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/databricks">Databricks</a></td>
-<td><a href="https://api-docs.databricks.com/python/databricks-ai-bridge/latest/databricks_langchain.html#databricks_langchain.DatabricksEmbeddings"><code>databricks-langchain</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/ibm_watsonx">IBM</a></td>
-<td><a href="https://python.langchain.com/api_reference/ibm/embeddings/langchain_ibm.embeddings.WatsonxEmbeddings.html"><code>langchain-ibm</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/nvidia_ai_endpoints">NVIDIA</a></td>
-<td><a href="https://python.langchain.com/api_reference/nvidia_ai_endpoints/embeddings/langchain_nvidia_ai_endpoints.embeddings.NVIDIAEmbeddings.html"><code>langchain-nvidia</code></a></td>
-</tr>
-<tr>
-<td><a href="/oss/python/integrations/text_embedding/aimlapi">AI/ML API</a></td>
-<td><a href="https://python.langchain.com/api_reference/aimlapi/embeddings/langchain_aimlapi.embeddings.AimlapiEmbeddings.html"><code>langchain-aimlapi</code></a></td>
+<td>Hybrid</td>
+<td>Комбинирует характеристики обоих подходов с этапами валидации.</td>
+<td>⚖️ Medium</td>
+<td>⚖️ Medium</td>
+<td>⏳ Variable</td>
+<td>Domain‑specific Q&amp;A с проверкой качества</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_5">Кэширование<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>Эмбеддинги можно сохранять или временно кэшировать, чтобы избежать их повторного вычисления.</p>
-<p>Кэширование эмбеддингов осуществляется с помощью <code>CacheBackedEmbeddings</code>. Эта обёртка сохраняет эмбеддинги в хранилище «ключ-значение», где текст хэшируется, а хэш используется в качестве ключа в кэше.</p>
-<p>Основной поддерживаемый способ инициализации <code>CacheBackedEmbeddings</code> — метод <code>from_bytes_store</code>. Он принимает следующие параметры:</p>
+<p><strong>Latency</strong>: задержка в общем случае более <strong>предсказуема</strong> в <strong>2-Step RAG</strong>, поскольку максимальное количество вызовов LLM известно и ограничено. Это предположение справедливо, если основную долю времени занимает LLM‑inference. Однако реальная latency также может зависеть от производительности Retrieval‑шагов — таких как время ответа API, сетевые задержки или запросы к базе данных, — которые варьируются в зависимости от используемых tools и инфраструктуры.</p>
+<h2 id="2-step-rag">2-Step RAG<a class="headerlink" href="#2-step-rag" title="Permanent link">&para;</a></h2>
+<p>В <strong>2-Step RAG</strong> Retrieval‑шаг всегда выполняется до Generation‑шага. Эта архитектура проста и предсказуема, что делает её подходящей для многих приложений, где получение релевантных документов является явным предварительным условием для генерации ответа.</p>
+<p><img alt="Схема 2-Step RAG" src="../assets/images/modules/retrieval/2_step_rag.png" /></p>
+<p>Типичный 2-Step RAG‑pipeline:</p>
+<ol>
+<li>Принять неструктурированный пользовательский запрос.</li>
+<li>Выполнить Retrieval по knowledge base с помощью retriever.</li>
+<li>Передать Retrieved документы вместе с исходным запросом в LLM.</li>
+<li>Сгенерировать ответ, опираясь на предоставленный контекст.</li>
+</ol>
+<p>2-Step RAG особенно полезен, когда:</p>
 <ul>
-<li><strong><code>underlying_embedder</code></strong>: эмбеддер, используемый для создания эмбеддингов.</li>
-<li><strong><code>document_embedding_cache</code></strong>: любой <a href="/oss/python/integrations/stores">ByteStore</a> для кэширования эмбеддингов документов.</li>
-<li><strong><code>batch_size</code></strong>: (необязательный, по умолчанию <code>None</code>) количество документов для обработки между обновлениями хранилища.</li>
-<li><strong><code>namespace</code></strong>: (необязательный, по умолчанию <code>""</code>) пространство имён для кэша документов. Помогает избежать коллизий (например, можно установить его равным имени модели эмбеддингов).</li>
-<li><strong><code>query_embedding_cache</code></strong>: (необязательный, по умолчанию <code>None</code>) <a href="/oss/python/integrations/stores">ByteStore</a> для кэширования эмбеддингов запросов или значение <code>True</code> для повторного использования того же хранилища, что и <code>document_embedding_cache</code>.</li>
+<li>Структура задачи понятна и не требует сложного планирования.</li>
+<li>Важно иметь детерминированное количество LLM‑вызовов.</li>
+<li>Knowledge base хорошо структурирована и Retrieval даёт устойчивые результаты.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">CacheBackedEmbeddings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.storage</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalFileStore</span>
+<p>См. <a href="#tutorial-retrieval-augmented-generation-rag">Tutorial: Retrieval-Augmented Generation (RAG)</a>, чтобы увидеть пример использования 2-Step RAG‑chain.</p>
+<h1 id="tutorial-retrieval-augmented-generation-rag">Tutorial: Retrieval-Augmented Generation (RAG)<a class="headerlink" href="#tutorial-retrieval-augmented-generation-rag" title="Permanent link">&para;</a></h1>
+<p>В этом tutorial показано, как построить Q&amp;A‑чатбота, способного отвечать на вопросы, опираясь на ваши данные, с использованием Retrieval-Augmented Generation. В walkthrough рассматриваются два подхода:</p>
+<ul>
+<li><strong>RAG agent</strong>, который запускает поисковые запросы с помощью гибкого tool — отлично подходит для задач общего назначения.</li>
+<li><strong>2-step RAG</strong>‑chain, который требует всего одного LLM‑вызова на запрос — быстрый и эффективный для более простых задач.</li>
+</ul>
+<h1 id="agentic-rag">Agentic RAG<a class="headerlink" href="#agentic-rag" title="Permanent link">&para;</a></h1>
+<p><strong>Agentic Retrieval-Augmented Generation (RAG)</strong> сочетает сильные стороны Retrieval-Augmented Generation с agent‑based reasoning. Вместо того чтобы выполнять Retrieval перед ответом, агент (на базе LLM) пошагово рассуждает и решает, <strong>когда</strong> и <strong>как</strong> извлекать информацию в ходе взаимодействия.</p>
+<p><img alt="Схема Agentic RAG" src="../assets/images/modules/retrieval/agentic_rag.png" /></p>
+<p>В Agentic RAG:</p>
+<ul>
+<li>LLM выступает в роли агента, который может вызывать один или несколько tools (включая Retrieval‑tools).</li>
+<li>Агент может чередовать шаги рассуждения и вызовы tools, строя план, уточняя запросы и проверяя гипотезы.</li>
+<li>Retrieval используется только при необходимости, что повышает гибкость и экономит ресурсы в некоторых сценариях.</li>
+</ul>
+<p>Пример простого Agentic RAG‑агента, который использует HTTP‑запросы для Retrieval:</p>
+<div class="highlight"><pre><span></span><code>import requests
 
-<span class="c1"># Создайте базовую модель эмбеддингов</span>
-<span class="n">underlying_embeddings</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># например, OpenAIEmbeddings(), HuggingFaceEmbeddings() и т.д.</span>
+from langchain.tools import tool
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_agent
 
-<span class="c1"># Хранилище сохраняет эмбеддинги в локальной файловой системе</span>
-<span class="c1"># Это не для продакшена, но удобно для локальной разработки</span>
-<span class="n">store</span> <span class="o">=</span> <span class="n">LocalFileStore</span><span class="p">(</span><span class="s2">&quot;./cache/&quot;</span><span class="p">)</span>
+@tool
+def fetch_url(url: str) -&gt; str:
+&quot;&quot;&quot;Fetch text content from a URL&quot;&quot;&quot;
+response = requests.get(url, timeout=10.0)
+response.raise_for_status()
+return response.text
 
-<span class="n">cached_embedder</span> <span class="o">=</span> <span class="n">CacheBackedEmbeddings</span><span class="o">.</span><span class="n">from_bytes_store</span><span class="p">(</span>
-    <span class="n">underlying_embeddings</span><span class="p">,</span>
-    <span class="n">store</span><span class="p">,</span>
-    <span class="n">namespace</span><span class="o">=</span><span class="n">underlying_embeddings</span><span class="o">.</span><span class="n">model</span>
-<span class="p">)</span>
+system_prompt = &quot;&quot;&quot;\
+Use fetch_url when you need to fetch information from a web-page; quote relevant snippets.
+&quot;&quot;&quot;
 
-<span class="c1"># Пример: кэширование эмбеддинга запроса</span>
-<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cached_embedder</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First call took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
-
-<span class="c1"># Последующие вызовы используют кэш</span>
-<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cached_embedder</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Second call took: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+agent = create_agent(
+model=&quot;claude-sonnet-4-5-20250929&quot;,
+tools=[fetch_url], \# Tool для Retrieval
+system_prompt=system_prompt,
+)
 </code></pre></div>
-<p>В продакшене обычно используют более надёжное постоянное хранилище, например базу данных или облачное хранилище. См. <a href="/oss/python/integrations/stores">интеграции хранилищ</a>.</p>
-<p>Source: https://docs.langchain.com/oss/python/integrations/text_embedding</p>
+<p>В этом примере:</p>
+<ul>
+<li><code>fetch_url</code> — это простой Retrieval‑tool, который получает текст по URL.</li>
+<li><code>create_agent</code> создаёт Agentic RAG‑агента, который может решать, когда вызывать <code>fetch_url</code>, а когда отвечать, опираясь на уже имеющийся контекст.</li>
+</ul>
+<p>См. <a href="#tutorial-agentic-rag-with-self-correction">Tutorial: Agentic RAG with Self-Correction</a>, чтобы увидеть более сложный пример Agentic RAG.</p>
+<h1 id="hybrid-rag">Hybrid RAG<a class="headerlink" href="#hybrid-rag" title="Permanent link">&para;</a></h1>
+<p>Hybrid RAG сочетает характеристики 2-Step и Agentic RAG. Он добавляет промежуточные шаги, такие как предобработка запросов, валидация Retrieval и пост‑проверка ответов. Такие системы предлагают больше гибкости, чем фиксированные pipelines, сохраняя при этом определённый контроль над исполнением.</p>
+<p><img alt="Схема Hybrid RAG" src="../assets/images/modules/retrieval/hybrid_rag.png" /></p>
+<p>Типичные компоненты Hybrid RAG:</p>
+<ul>
+<li><strong>Query enhancement</strong>: модификация входного вопроса для улучшения качества Retrieval. Это может включать переформулирование неясных запросов, генерацию нескольких вариантов или расширение запроса дополнительным контекстом.</li>
+<li><strong>Retrieval validation</strong>: оценка того, насколько Retrieved документы релевантны и достаточны. Если нет, система может уточнить запрос и повторить Retrieval.</li>
+<li><strong>Answer validation</strong>: проверка сгенерированного ответа на точность, полноту и соответствие исходному контенту. При необходимости система может сгенерировать ответ заново или скорректировать его.</li>
+</ul>
+<p>Hybrid RAG особенно полезен для:</p>
+<ul>
+<li>Приложений с неоднозначными или недостаточно конкретными запросами.</li>
+<li>Систем, в которых требуются шаги валидации и контроля качества.</li>
+<li>Workflow, включающих несколько источников или итеративное уточнение ответов.</li>
+</ul>
+<p>См. <a href="#tutorial-agentic-rag-with-self-correction">Tutorial: Agentic RAG with Self-Correction</a> для примера Hybrid RAG‑подхода.</p>
+<h1 id="tutorial-agentic-rag-with-self-correction">Tutorial: Agentic RAG with Self-Correction<a class="headerlink" href="#tutorial-agentic-rag-with-self-correction" title="Permanent link">&para;</a></h1>
+<p>Этот tutorial демонстрирует пример <strong>Hybrid RAG</strong>, который сочетает agentic reasoning с Retrieval и self‑correction. Агент:</p>
+<ul>
+<li>Планирует шаги, решая, когда выполнять Retrieval.</li>
+<li>Проверяет свои ответы по Retrieved источникам.</li>
+<li>При необходимости корректирует или регенерирует ответы, чтобы улучшить точность и согласованность.</li>
+</ul>
+<p>В результате получается более надёжная система, чем простой 2-Step RAG, с дополнительным контролем по сравнению с полностью свободным Agentic RAG.</p>
+<p>Source: <a href="https://docs.langchain.com/oss/python/langchain/retrieval">https://docs.langchain.com/oss/python/langchain/retrieval</a></p>
 
 
 
@@ -1136,7 +1014,7 @@
     <span class="md-icon" title="Последнее обновление">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="9 ноября 2025 г. 19:54:44 UTC">9 ноября 2025 г.</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="1 декабря 2025 г. 20:58:17 UTC">1 декабря 2025 г.</span>
   </span>
 
     
@@ -1172,7 +1050,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
         
           
-          <a href="llamacpp.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Llama.cpp">
+          <a href="splitting-code.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Splitting code">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1182,20 +1060,20 @@
                 Назад
               </span>
               <div class="md-ellipsis">
-                Llama.cpp
+                Splitting code
               </div>
             </div>
           </a>
         
         
           
-          <a href="chroma.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Chroma">
+          <a href="../tutorials/llm-chain.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Создайте простое приложение LLM с чат-моделями и шаблонами промптов">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Вперед
               </span>
               <div class="md-ellipsis">
-                Chroma
+                Создайте простое приложение LLM с чат-моделями и шаблонами промптов
               </div>
             </div>
             <div class="md-footer__button md-icon">
