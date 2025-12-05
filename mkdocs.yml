@@ -25,6 +25,7 @@ nav:
       - basics/introduction.md
   - Концепции:
       - concepts/chat-models.md
+      - concepts/context-engineering-in-agents.md
   - Модули:
       - 'Llama.cpp': modules/llamacpp.md
       - 'Embedding models': modules/text-embedding.md
@@ -37,6 +38,7 @@ nav:
       - tutorials/llm-chain.md
       - tutorials/chatbot.md
       - tutorials/agents.md
+      - tutorials/model-context-protocol-mcp.md
   - Интеграции:
       - integrations/openai.md
   - 🐍 Pomodoro ⏳: pomodoro.html
