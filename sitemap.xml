@@ -2,58 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://llmdev.ru/index.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/basics/introduction.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/concepts/chat-models.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/concepts/context-engineering-in-agents.html</loc>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/integrations/openai.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/chroma.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/llamacpp.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/qdrant.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/retrieval.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/splitting-code.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/text-embedding.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/modules/text-splitters.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/tutorials/agents.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/tutorials/chatbot.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
     </url>
     <url>
          <loc>https://llmdev.ru/tutorials/llm-chain.html</loc>
-         <lastmod>2025-12-01</lastmod>
+         <lastmod>2025-12-05</lastmod>
+    </url>
+    <url>
+         <loc>https://llmdev.ru/tutorials/model-context-protocol-mcp.html</loc>
+         <lastmod>2025-12-05</lastmod>
     </url>
 </urlset>
