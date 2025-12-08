@@ -23,6 +23,9 @@ nav:
   - Главная: index.md
   - Основы:
       - basics/introduction.md
+  - Основные компоненты:
+      - core_components/agents.md
+      - core_components/tools.md
   - Концепции:
       - concepts/chat-models.md
       - concepts/context-engineering-in-agents.md
@@ -37,7 +40,7 @@ nav:
   - Практические курсы:
       - tutorials/llm-chain.md
       - tutorials/chatbot.md
-      - tutorials/agents.md
+      - tutorials/rag_agents.md
       - tutorials/model-context-protocol-mcp.md
   - Интеграции:
       - integrations/openai.md
